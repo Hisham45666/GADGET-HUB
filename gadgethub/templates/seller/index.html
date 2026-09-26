@@ -1,0 +1,2107 @@
+
+<html>
+  <head>
+    <title>gadget hub</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/static/sellers/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/sellers/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="/static/sellers/js/modernizr.js"></script>
+
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <title>Search</title>
+        <path fill="currentColor" d="M19 3C13.488 3 9 7.488 9 13c0 2.395.84 4.59 2.25 6.313L3.281 27.28l1.439 1.44l7.968-7.969A9.922 9.922 0 0 0 19 23c5.512 0 10-4.488 10-10S24.512 3 19 3zm0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8s-8-3.57-8-8s3.57-8 8-8z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 16 16">
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+      </symbol>
+      <svg xmlns="http://www.w3.org/2000/svg" id="chevron-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+      </svg>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="cart-outline" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="quality" viewBox="0 0 16 16">
+        <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="price-tag" viewBox="0 0 16 16">
+        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="shield-plus" viewBox="0 0 16 16">
+        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+        <path d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="star-fill" viewBox="0 0 16 16">
+        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="star-empty" viewBox="0 0 16 16">
+        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="star-half" viewBox="0 0 16 16">
+        <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="quote" viewBox="0 0 24 24">
+        <path fill="currentColor" d="m15 17l2-4h-4V6h7v7l-2 4h-3Zm-9 0l2-4H4V6h7v7l-2 4H6Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="facebook" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="youtube" viewBox="0 0 32 32">
+        <path fill="currentColor" d="M29.41 9.26a3.5 3.5 0 0 0-2.47-2.47C24.76 6.2 16 6.2 16 6.2s-8.76 0-10.94.59a3.5 3.5 0 0 0-2.47 2.47A36.13 36.13 0 0 0 2 16a36.13 36.13 0 0 0 .59 6.74a3.5 3.5 0 0 0 2.47 2.47c2.18.59 10.94.59 10.94.59s8.76 0 10.94-.59a3.5 3.5 0 0 0 2.47-2.47A36.13 36.13 0 0 0 30 16a36.13 36.13 0 0 0-.59-6.74ZM13.2 20.2v-8.4l7.27 4.2Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="twitter" viewBox="0 0 256 256">
+        <path fill="currentColor" d="m245.66 77.66l-29.9 29.9C209.72 177.58 150.67 232 80 232c-14.52 0-26.49-2.3-35.58-6.84c-7.33-3.67-10.33-7.6-11.08-8.72a8 8 0 0 1 3.85-11.93c.26-.1 24.24-9.31 39.47-26.84a110.93 110.93 0 0 1-21.88-24.2c-12.4-18.41-26.28-50.39-22-98.18a8 8 0 0 1 13.65-4.92c.35.35 33.28 33.1 73.54 43.72V88a47.87 47.87 0 0 1 14.36-34.3A46.87 46.87 0 0 1 168.1 40a48.66 48.66 0 0 1 41.47 24H240a8 8 0 0 1 5.66 13.66Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="instagram" viewBox="0 0 256 256">
+        <path fill="currentColor" d="M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48Zm0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32Zm48-136H80a56.06 56.06 0 0 0-56 56v96a56.06 56.06 0 0 0 56 56h96a56.06 56.06 0 0 0 56-56V80a56.06 56.06 0 0 0-56-56Zm40 152a40 40 0 0 1-40 40H80a40 40 0 0 1-40-40V80a40 40 0 0 1 40-40h96a40 40 0 0 1 40 40ZM192 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="linkedin" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="nav-icon" viewBox="0 0 16 16">
+        <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="close" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" id="navbar-icon" viewBox="0 0 16 16">
+        <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
+      </symbol>
+    </svg>
+
+    <div class="search-popup">
+        <div class="search-popup-container">
+
+          <form role="search" method="get" class="search-form" action="">
+            <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+            <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
+          </form>
+
+          <h5 class="cat-list-title">Browse Categories</h5>
+
+          <ul class="cat-list">
+            <li class="cat-list-item">
+              <a href="#" title="Mobile Phones">Mobile Phones</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Smart Watches">Smart Watches</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Headphones">Headphones</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Accessories">Accessories</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Monitors">Monitors</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Speakers">Speakers</a>
+            </li>
+            <li class="cat-list-item">
+              <a href="#" title="Memory Cards">Memory Cards</a>
+            </li>
+          </ul>
+
+        </div>
+    </div>
+
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+      <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/myapp/sellers_home/" style="text-decoration: none;">
+  <h1 style="font-size: 2.1rem; font-weight: 700; margin: 0; letter-spacing: -0.5px;
+             background: linear-gradient(90deg, #4a6cf7, #ff6b35);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;">
+    Gadget Hub
+  </h1>
+</a>
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="navbar-icon">
+              <use xlink:href="#navbar-icon"></use>
+            </svg>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+                <a class="navbar-brand" href="/myapp/sellers_home/" style="text-decoration: none;">
+  <h1 style="font-size: 2.1rem; font-weight: 700; margin: 0; letter-spacing: -0.5px;
+             background: linear-gradient(90deg, #4a6cf7, #ff6b35);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;">
+    Gadget Hub
+  </h1>
+</a>
+            </div>
+            <div class="offcanvas-body">
+              <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link me-4 active" href="/myapp/sellers_home/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="/myapp/seller_sent_review_get/#a">Sent review</a>
+                </li>
+                 <li class="nav-item dropdown">
+                  <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Compliants</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/myapp/seller_view_compliant_replay/#a" class="dropdown-item">View Replay</a>
+                    </li>
+                    <li>
+                      <a href="/myapp/seller_sent_compliant_get/#a" class="dropdown-item">Sent complaint</a>
+                    </li>
+
+                  </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Manage products</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/myapp/sellers_view_product_get/#a" class="dropdown-item">View product</a>
+                    </li>
+                    <li>
+                      <a href="/myapp/seller_add_product_get/#a" class="dropdown-item">Add product</a>
+                    </li>
+
+
+                  </ul>
+                </li>
+
+                  <li class="nav-item dropdown">
+                  <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Account</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/myapp/seller_profile/#a" class="dropdown-item">Profile</a>
+                    </li>
+                    <li>
+                      <a href="/myapp/seller_change_password_get/#a" class="dropdown-item">Change password</a>
+                    </li>
+                    <li>
+                      <a href="/myapp/logout_get/" onclick="return confirm('Are you sure')" class="dropdown-item">Logout</a>
+                    </li>
+
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <div class="user-items ps-5">
+                    <ul class="d-flex justify-content-end list-unstyled">
+                      <li class="search-item pe-3">
+                        <a href="#" class="search-button">
+                          <svg class="search">
+                            <use xlink:href="#search"></use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li class="pe-3">
+                        <a href="#">
+                          <svg class="user">
+                            <use xlink:href="#user"></use>
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="cart.html">
+                          <svg class="cart">
+                            <use xlink:href="#cart"></use>
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section id="billboard" class="position-relative overflow-hidden bg-light-blue py-5">
+  <div class="swiper main-swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 -->
+
+
+
+        <div class="swiper-slide">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <!-- Left Column: Content -->
+      <div class="col-lg-6">
+        <div class="pe-lg-4">
+          <!-- Badge Header -->
+          <div class="d-inline-flex align-items-center gap-2 bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-4">
+            <span class="badge bg-primary rounded-circle p-1">
+              <i class="bi bi-graph-up-arrow"></i>
+            </span>
+            <span class="fw-semibold small text-uppercase tracking-wide">Seller Dashboard</span>
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="display-4 fw-black text-dark mb-3 lh-base">
+            Scale Your <span class="text-primary position-relative">E-Commerce<svg class="position-absolute start-0 bottom-0 w-100" height="8" viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M0,7 C30,1 70,1 100,7" stroke="currentColor" stroke-width="3" fill="none" class="text-primary opacity-50"/></svg></span> Business
+          </h1>
+
+          <!-- Body Text -->
+          <p class="fs-5 text-muted mb-4 lead">
+            Streamline operations, monitor inventory in real time, and maximize sales revenue with our high-performance merchant management hub.
+          </p>
+
+          <!-- Core Feature Highlights -->
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                <span class="fw-medium text-dark">Instant Inventory Sync</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                <span class="fw-medium text-dark">Real-Time Analytics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-flex flex-wrap align-items-center gap-3">
+            <a href="/myapp/seller_add_product_get/#a" class="btn btn-primary btn-lg px-4 py-3 shadow-sm rounded-3 fw-semibold d-inline-flex align-items-center gap-2">
+              <i class="bi bi-plus-circle-fill"></i>
+              Add New Product
+            </a>
+            <a href="/myapp/sellers_view_product_get/#a" class="btn btn-light btn-lg px-4 py-3 rounded-3 fw-semibold border d-inline-flex align-items-center gap-2">
+              <i class="bi bi-grid-3x3-gap-fill text-muted"></i>
+              Manage Inventory
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Dashboard Mockup -->
+      <div class="col-lg-6">
+        <div class="position-relative">
+          <!-- Background Accent Glow -->
+          <div class="position-absolute top-50 start-50 translate-middle w-75 h-75 bg-primary opacity-10 rounded-circle blur-3xl -z-1"></div>
+
+          <!-- Main Image Wrapper -->
+          <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-white p-3">
+            <div class="bg-light rounded-3 p-4 text-center">
+              <img src="/static/sellers/images/a.png"
+                   alt="Seller Dashboard Interface"
+                   class="img-fluid rounded-2 shadow-sm">
+            </div>
+          </div>
+
+          <!-- Floating Metric Badge -->
+          <div class="position-absolute bottom-0 start-0 translate-middle-y bg-white p-3 rounded-3 shadow-lg border d-none d-sm-flex align-items-center gap-3 ms-n3 mb-n3">
+            <div class="bg-success bg-opacity-10 text-success p-3 rounded-circle">
+              <i class="bi bi-currency-dollar fs-4"></i>
+            </div>
+            <div>
+              <div class="text-muted small fw-medium">Active Storefront</div>
+              <div class="fw-bold text-dark fs-5">100% Operational</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{#      <div class="swiper-slide">#}
+{#        <div class="container">#}
+{#          <div class="row align-items-center min-vh-50">#}
+{#            <div class="col-lg-6 order-2 order-lg-1">#}
+{#              <div class="banner-content pe-lg-5">#}
+{#                <span class="text-uppercase text-muted fw-semibold letter-spacing-1 mb-3 d-block">#}
+{#                  Premium Collection#}
+{#                </span>#}
+{#                <h1 class="display-3 fw-bold text-dark mb-4 lh-sm">#}
+{#                  Designed to<br>Elevate Everyday Life#}
+{#                </h1>#}
+{#                <p class="lead text-secondary mb-4 col-lg-10">#}
+{#                  Discover thoughtfully crafted products that combine exceptional quality, modern design, and lasting performance.#}
+{#                </p>#}
+{#                <div class="d-flex flex-wrap gap-3">#}
+{#                 <a href="/myapp/sellers_home/"class="btn btn-dark btn-lg text-uppercase px-4 py-3 rounded-0">#}
+{#                    Shop Collection#}
+{#                  </a>#}
+{#                  <a href="/myapp/sellers_home/" class="btn btn-outline-dark btn-lg text-uppercase px-4 py-3 rounded-0">#}
+{#                    Explore More#}
+{#                  </a>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">#}
+{#              <div class="image-holder text-center">#}
+{#                <img src="/static/sellers/images/Chat.png"#}
+{#                     alt="Featured Product"#}
+{#                     class="img-fluid">#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="container">
+          <div class="row align-items-center min-vh-50">
+            <div class="col-lg-6 order-2 order-lg-1">
+              <div class="banner-content pe-lg-5">
+                <span class="text-uppercase text-muted fw-semibold letter-spacing-1 mb-3 d-block">
+                  Smart Innovation
+                </span>
+                <h1 class="display-3 fw-bold text-dark mb-4 lh-sm">
+                  Technology That<br>Works Smarter
+                </h1>
+                <p class="lead text-secondary mb-4 col-lg-10">
+                  Experience intelligent solutions designed to simplify your routine and unlock a more efficient way of living.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                  <a href="/myapp/sellers_home/" class="btn btn-dark btn-lg text-uppercase px-4 py-3 rounded-0">
+                    Shop Now
+                  </a>
+                  <a href="/myapp/sellers_home/" class="btn btn-outline-dark btn-lg text-uppercase px-4 py-3 rounded-0">
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+              <div class="image-holder text-center">
+                <!-- <img src="/static/sellers/images/Chat.jpg" alt="Featured Product" class="img-fluid"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <div class="swiper-button-prev swiper-arrow">
+    <svg class="chevron-left" width="24" height="24">
+      <use xlink:href="#chevron-left" />
+    </svg>
+  </div>
+  <div class="swiper-button-next swiper-arrow">
+    <svg class="chevron-right" width="24" height="24">
+      <use xlink:href="#chevron-right" />
+    </svg>
+  </div>
+</section>
+
+
+
+{#    <section id="billboard" class="position-relative overflow-hidden bg-light-blue">#}
+{#      <div class="swiper main-swiper">#}
+{#        <div class="swiper-wrapper">#}
+{#          <div class="swiper-slide">#}
+{#            <div class="container">#}
+{#              <div class="row d-flex align-items-center">#}
+{#                <div class="col-md-6">#}
+{#                  <div class="banner-content">#}
+{#                    <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>#}
+{#                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="col-md-5">#}
+{#                  <div class="image-holder">#}
+{#                    <img src="/static/sellers/images/Chat.png" alt="banner">#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="swiper-slide">#}
+{#            <div class="container">#}
+{#              <div class="row d-flex flex-wrap align-items-center">#}
+{#                <div class="col-md-6">#}
+{#                  <div class="banner-content">#}
+{#                    <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>#}
+{#                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Product</a>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="col-md-5">#}
+{#                  <div class="image-holder">#}
+{#                    <img src="/static/sellers/images/Chat.jpg" alt="banner">#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="swiper-icon swiper-arrow swiper-arrow-prev">#}
+{#        <svg class="chevron-left">#}
+{#          <use xlink:href="#chevron-left" />#}
+{#        </svg>#}
+{#      </div>#}
+{#      <div class="swiper-icon swiper-arrow swiper-arrow-next">#}
+{#        <svg class="chevron-right">#}
+{#          <use xlink:href="#chevron-right" />#}
+{#        </svg>#}
+{#      </div>#}
+{#    </section>#}
+{#    <section id="company-services" class="padding-large">#}
+{#      <div class="container">#}
+{#        <div class="row">#}
+{#          <div class="col-lg-3 col-md-6 pb-3">#}
+{#            <div class="icon-box d-flex">#}
+{#              <div class="icon-box-icon pe-3 pb-3">#}
+{#                <svg class="cart-outline">#}
+{#                  <use xlink:href="#cart-outline" />#}
+{#                </svg>#}
+{#              </div>#}
+{#              <div class="icon-box-content">#}
+{#                <h3 class="card-title text-uppercase text-dark">Free delivery</h3>#}
+{#                <p>Consectetur adipi elit lorem ipsum dolor sit amet.</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-lg-3 col-md-6 pb-3">#}
+{#            <div class="icon-box d-flex">#}
+{#              <div class="icon-box-icon pe-3 pb-3">#}
+{#                <svg class="quality">#}
+{#                  <use xlink:href="#quality" />#}
+{#                </svg>#}
+{#              </div>#}
+{#              <div class="icon-box-content">#}
+{#                <h3 class="card-title text-uppercase text-dark">Quality guarantee</h3>#}
+{#                <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-lg-3 col-md-6 pb-3">#}
+{#            <div class="icon-box d-flex">#}
+{#              <div class="icon-box-icon pe-3 pb-3">#}
+{#                <svg class="price-tag">#}
+{#                  <use xlink:href="#price-tag" />#}
+{#                </svg>#}
+{#              </div>#}
+{#              <div class="icon-box-content">#}
+{#                <h3 class="card-title text-uppercase text-dark">Daily offers</h3>#}
+{#                <p>Amet consectetur adipi elit loreme ipsum dolor sit.</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-lg-3 col-md-6 pb-3">#}
+{#            <div class="icon-box d-flex">#}
+{#              <div class="icon-box-icon pe-3 pb-3">#}
+{#                <svg class="shield-plus">#}
+{#                  <use xlink:href="#shield-plus" />#}
+{#                </svg>#}
+{#              </div>#}
+{#              <div class="icon-box-content">#}
+{#                <h3 class="card-title text-uppercase text-dark">100% secure payment</h3>#}
+{#                <p>Rem Lopsum dolor sit amet, consectetur adipi elit.</p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </section>#}
+    <section id="a" class="product-store position-relative padding-large no-padding-top">
+        {% block body %}
+<!-- ================= SELLER ABOUT SECTION ================= -->
+<section class="seller-about-section">
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <!-- Main About Card -->
+                <div class="seller-about-card">
+
+                    <div class="seller-about-content text-center">
+
+                        <!-- Badge -->
+                        <span class="seller-about-badge">
+                            <i class="fa fa-store me-2"></i>
+                            GADGET HUB SELLER PLATFORM
+                        </span>
+
+                        <!-- Heading -->
+                        <h2 class="seller-about-title">
+                            Sell Smarter. <span>Grow Faster.</span>
+                        </h2>
+
+                        <p class="seller-about-subtitle">
+                            Everything you need to manage and grow your gadget
+                            business in one powerful platform.
+                        </p>
+
+                        <p class="seller-about-text">
+                            Gadget Hub provides sellers with a simple and powerful
+                            marketplace to showcase their gadgets, manage products,
+                            control stock availability, update prices and create
+                            attractive offers. Reach customers who are actively
+                            looking for smartphones, laptops, accessories and other
+                            electronic products.
+                        </p>
+
+
+                        <!-- Features -->
+                        <div class="row g-4 mt-4">
+
+                            <!-- Add Products -->
+                            <div class="col-md-4">
+
+                                <div class="about-feature">
+
+                                    <div class="about-feature-icon blue">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+
+                                    <h5>Add Products</h5>
+
+                                    <p>
+                                        Easily add your gadgets with product
+                                        details, prices, images and specifications.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Manage Products -->
+                            <div class="col-md-4">
+
+                                <div class="about-feature">
+
+                                    <div class="about-feature-icon purple">
+                                        <i class="fa fa-cogs"></i>
+                                    </div>
+
+                                    <h5>Manage Products</h5>
+
+                                    <p>
+                                        Update product information, prices,
+                                        stock quantity and availability anytime.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Offers -->
+                            <div class="col-md-4">
+
+                                <div class="about-feature">
+
+                                    <div class="about-feature-icon orange">
+                                        <i class="fa fa-tags"></i>
+                                    </div>
+
+                                    <h5>Create Offers</h5>
+
+                                    <p>
+                                        Provide discounts and special offers
+                                        to attract more customers.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- How It Works -->
+                        <div class="seller-how-section">
+
+                            <h3>
+                                How It Works
+                            </h3>
+
+                            <p class="how-description">
+                                Start selling your gadgets in just a few simple steps.
+                            </p>
+
+                            <div class="row g-4 mt-3">
+
+                                <div class="col-md-3">
+
+                                    <div class="how-step">
+
+                                        <div class="step-number">
+                                            01
+                                        </div>
+
+                                        <h6>Create Product</h6>
+
+                                        <p>
+                                            Add your gadget details.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-3">
+
+                                    <div class="how-step">
+
+                                        <div class="step-number">
+                                            02
+                                        </div>
+
+                                        <h6>Set Price</h6>
+
+                                        <p>
+                                            Set competitive prices.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-3">
+
+                                    <div class="how-step">
+
+                                        <div class="step-number">
+                                            03
+                                        </div>
+
+                                        <h6>Manage Stock</h6>
+
+                                        <p>
+                                            Keep availability updated.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-3">
+
+                                    <div class="how-step">
+
+                                        <div class="step-number">
+                                            04
+                                        </div>
+
+                                        <h6>Reach Customers</h6>
+
+                                        <p>
+                                            Get discovered by buyers.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Bottom Message -->
+                        <div class="seller-about-bottom">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-8 text-lg-start text-center">
+
+                                    <h4>
+                                        Ready to grow your gadget business?
+                                    </h4>
+
+                                    <p>
+                                        Add your products and start reaching
+                                        more customers on Gadget Hub.
+                                    </p>
+
+                                </div>
+
+                                <div class="col-lg-4 text-lg-end text-center mt-3 mt-lg-0">
+
+                                    <a href="/myapp/seller_add_product_get/#a" class="seller-about-btn">
+                                        <i class="fa fa-plus-circle me-2"></i>
+                                        Add Product
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= SELLER ABOUT CSS ================= -->
+<style>
+
+    .seller-about-section {
+        padding: 90px 0;
+        background:
+            linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+    }
+
+
+    /* Main Card */
+
+    .seller-about-card {
+        position: relative;
+        overflow: hidden;
+        padding: 60px 55px;
+        border-radius: 28px;
+        background: #ffffff;
+        border: 1px solid #e8edf5;
+        box-shadow: 0 25px 70px rgba(28, 48, 80, .10);
+    }
+
+    .seller-about-card::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: rgba(13, 110, 253, .06);
+        top: -130px;
+        left: -100px;
+    }
+
+    .seller-about-card::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(111, 66, 193, .05);
+        bottom: -120px;
+        right: -80px;
+    }
+
+
+    /* Badge */
+
+    .seller-about-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 9px 18px;
+        border-radius: 50px;
+        color: #0d6efd;
+        background: #eef5ff;
+        border: 1px solid #dceaff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+    }
+
+
+    /* Heading */
+
+    .seller-about-title {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        color: #172033;
+        font-size: 44px;
+        font-weight: 800;
+    }
+
+    .seller-about-title span {
+        color: #0d6efd;
+    }
+
+    .seller-about-subtitle {
+        max-width: 650px;
+        margin: auto;
+        color: #3f4b5e;
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 1.7;
+    }
+
+    .seller-about-text {
+        max-width: 800px;
+        margin: 20px auto 0;
+        color: #7b8799;
+        line-height: 1.9;
+        font-size: 15px;
+    }
+
+
+    /* Feature Cards */
+
+    .about-feature {
+        height: 100%;
+        padding: 30px 22px;
+        border-radius: 18px;
+        background: #f9fbfe;
+        border: 1px solid #edf1f6;
+        transition: all .3s ease;
+    }
+
+    .about-feature:hover {
+        transform: translateY(-7px);
+        background: #fff;
+        border-color: rgba(13,110,253,.18);
+        box-shadow: 0 15px 35px rgba(30,45,70,.08);
+    }
+
+    .about-feature-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        font-size: 22px;
+    }
+
+    .about-feature-icon.blue {
+        color: #0d6efd;
+        background: #eaf3ff;
+    }
+
+    .about-feature-icon.purple {
+        color: #7950f2;
+        background: #f0ebff;
+    }
+
+    .about-feature-icon.orange {
+        color: #f59f00;
+        background: #fff4db;
+    }
+
+    .about-feature h5 {
+        color: #172033;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .about-feature p {
+        margin: 0;
+        color: #8792a4;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    /* How It Works */
+
+    .seller-how-section {
+        margin-top: 55px;
+        padding-top: 45px;
+        border-top: 1px solid #edf0f5;
+    }
+
+    .seller-how-section h3 {
+        color: #172033;
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .how-description {
+        color: #8994a6;
+        font-size: 14px;
+    }
+
+
+    .how-step {
+        position: relative;
+    }
+
+    .step-number {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #fff;
+        background: linear-gradient(135deg, #0d6efd, #008cff);
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 7px 20px rgba(13,110,253,.22);
+    }
+
+    .how-step h6 {
+        color: #263247;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .how-step p {
+        margin: 0;
+        color: #929cad;
+        font-size: 12px;
+    }
+
+
+    /* Bottom CTA */
+
+    .seller-about-bottom {
+        margin-top: 50px;
+        padding: 28px 30px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #101828, #182b49);
+    }
+
+    .seller-about-bottom h4 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .seller-about-bottom p {
+        color: #9eabbf;
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .seller-about-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 13px 22px;
+        border-radius: 9px;
+        color: #fff;
+        background: #0d6efd;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .seller-about-btn:hover {
+        color: #fff;
+        background: #0b5ed7;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(13,110,253,.35);
+    }
+
+
+    /* Responsive */
+
+    @media (max-width: 767px) {
+
+        .seller-about-section {
+            padding: 50px 0;
+        }
+
+        .seller-about-card {
+            padding: 40px 20px;
+            border-radius: 20px;
+        }
+
+        .seller-about-title {
+            font-size: 30px;
+        }
+
+        .seller-about-subtitle {
+            font-size: 16px;
+        }
+
+        .seller-about-bottom {
+            padding: 25px 18px;
+        }
+
+    }
+
+</style>
+<!-- ================= END SELLER ABOUT ================= -->
+
+
+        {% endblock %}
+    </section>
+    <section id="smart-watches" class="product-store padding-large position-relative">
+      <div class="container">
+        <div class="row">
+          <div class="display-header d-flex justify-content-between pb-3">
+            <h2 class="display-7 text-dark text-uppercase">Smart Watches</h2>
+            <div class="btn-right">
+              <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+            </div>
+          </div>
+          <div class="swiper product-watch-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                    <img src="/static/sellers/images/product-item6.jpg" alt="product-item" class="img-fluid">
+                  </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                    </div>
+                  </div>
+                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">Pink watch</a>
+                    </h3>
+                    <span class="item-price text-primary">$870</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                    <img src="/static/sellers/images/product-item7.jpg" alt="product-item" class="img-fluid">
+                  </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                    </div>
+                  </div>
+                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">Heavy watch</a>
+                    </h3>
+                    <span class="item-price text-primary">$680</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                    <img src="/static/sellers/images/product-item8.jpg" alt="product-item" class="img-fluid">
+                  </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                    </div>
+                  </div>
+                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">spotted watch</a>
+                    </h3>
+                    <span class="item-price text-primary">$750</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                    <img src="/static/sellers/images/product-item9.jpg" alt="product-item" class="img-fluid">
+                  </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                    </div>
+                  </div>
+                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">black watch</a>
+                    </h3>
+                    <span class="item-price text-primary">$650</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-card position-relative">
+                  <div class="image-holder">
+                    <img src="/static/sellers/images/product-item10.jpg" alt="product-item" class="img-fluid">
+                  </div>
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button d-flex">
+                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                    </div>
+                  </div>
+                  <div class="card-detail d-flex justify-content-between pt-3">
+                    <h3 class="card-title text-uppercase">
+                      <a href="#">black watch</a>
+                    </h3>
+                    <span class="item-price text-primary">$750</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination position-absolute text-center"></div>
+    </section>
+    <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('images/single-image1.png');background-position: right; background-repeat: no-repeat;">
+      <div class="row d-flex flex-wrap align-items-center">
+        <div class="col-md-6 col-sm-12">
+          <div class="text-content offset-4 padding-medium">
+            <h3>10% off</h3>
+            <h2 class="display-2 pb-5 text-uppercase text-dark">New year sale</h2>
+            <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+
+        </div>
+      </div>
+    </section>
+    <section id="latest-blog" class="padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="display-header d-flex justify-content-between pb-3">
+            <h2 class="display-7 text-dark text-uppercase">Latest Posts</h2>
+            <div class="btn-right">
+              <a href="blog.html" class="btn btn-medium btn-normal text-uppercase">Read Blog</a>
+            </div>
+          </div>
+          <div class="post-grid d-flex flex-wrap justify-content-between">
+            <div class="col-lg-4 col-sm-12">
+              <div class="card border-none me-3">
+                <div class="card-image">
+                  <img src="/static/sellers/images/post-item1.jpg" alt="" class="img-fluid">
+                </div>
+              </div>
+              <div class="card-body text-uppercase">
+                <div class="card-meta text-muted">
+                  <span class="meta-date">feb 22, 2023</span>
+                  <span class="meta-category">- Gadgets</span>
+                </div>
+                <h3 class="card-title">
+                  <a href="#">Get some cool gadgets in 2023</a>
+                </h3>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <div class="card border-none me-3">
+                <div class="card-image">
+                  <img src="/static/sellers/images/post-item2.jpg" alt="" class="img-fluid">
+                </div>
+              </div>
+              <div class="card-body text-uppercase">
+                <div class="card-meta text-muted">
+                  <span class="meta-date">feb 25, 2023</span>
+                  <span class="meta-category">- Technology</span>
+                </div>
+                <h3 class="card-title">
+                  <a href="#">Technology Hack You Won't Get</a>
+                </h3>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <div class="card border-none me-3">
+                <div class="card-image">
+                  <img src="/static/sellers//post-item3.jpg" alt="" class="img-fluid">
+                </div>
+              </div>
+              <div class="card-body text-uppercase">
+                <div class="card-meta text-muted">
+                  <span class="meta-date">feb 22, 2023</span>
+                  <span class="meta-category">- Camera</span>
+                </div>
+                <h3 class="card-title">
+                  <a href="#">Top 10 Small Camera In The World</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="testimonials" class="position-relative">
+      <div class="container">
+        <div class="row">
+          <div class="review-content position-relative">
+            <div class="swiper-icon swiper-arrow swiper-arrow-prev position-absolute d-flex align-items-center">
+              <svg class="chevron-left">
+                <use xlink:href="#chevron-left" />
+              </svg>
+            </div>
+            <div class="swiper testimonial-swiper">
+              <div class="quotation text-center">
+                <svg class="quote">
+                  <use xlink:href="#quote" />
+                </svg>
+              </div>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide text-center d-flex justify-content-center">
+                  <div class="review-item col-md-10">
+                    <i class="icon icon-review"></i>
+                    <blockquote>“Tempus oncu enim pellen tesque este pretium in neque, elit morbi sagittis lorem habi mattis Pellen tesque pretium feugiat vel morbi suspen dise sagittis lorem habi tasse morbi.”</blockquote>
+                    <div class="rating">
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-half">
+                        <use xlink:href="#star-half"></use>
+                      </svg>
+                      <svg class="star star-empty">
+                        <use xlink:href="#star-empty"></use>
+                      </svg>
+                    </div>
+                    <div class="author-detail">
+                      <div class="name text-dark text-uppercase pt-2">Emma Chamberlin</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide text-center d-flex justify-content-center">
+                  <div class="review-item col-md-10">
+                    <i class="icon icon-review"></i>
+                    <blockquote>“A blog is a digital publication that can complement a website or exist independently. A blog may include articles, short posts, listicles, infographics, videos, and other digital content.”</blockquote>
+                    <div class="rating">
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-fill">
+                        <use xlink:href="#star-fill"></use>
+                      </svg>
+                      <svg class="star star-half">
+                        <use xlink:href="#star-half"></use>
+                      </svg>
+                      <svg class="star star-empty">
+                        <use xlink:href="#star-empty"></use>
+                      </svg>
+                    </div>
+                    <div class="author-detail">
+                      <div class="name text-dark text-uppercase pt-2">Jennie Rose</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-icon swiper-arrow swiper-arrow-next position-absolute d-flex align-items-center">
+              <svg class="chevron-right">
+                <use xlink:href="#chevron-right" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </section>
+    <section id="subscribe" class="container-grid padding-large position-relative overflow-hidden">
+      <div class="container">
+        <div class="row">
+          <div class="subscribe-content bg-dark d-flex flex-wrap justify-content-center align-items-center padding-medium">
+            <div class="col-md-6 col-sm-12">
+              <div class="display-header pe-3">
+                <h2 class="display-7 text-uppercase text-light">Subscribe Us Now</h2>
+                <p>Get latest news, updates and deals directly mailed to your inbox.</p>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-12">
+              <form class="subscription-form validate">
+                <div class="input-group flex-wrap">
+                  <input class="form-control btn-rounded-none" type="email" name="EMAIL" placeholder="Your email address here" required="">
+                  <button class="btn btn-medium btn-primary text-uppercase btn-rounded-none" type="submit" name="subscribe">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="instagram" class="padding-large overflow-hidden no-padding-top">
+      <div class="container">
+        <div class="row">
+          <div class="display-header text-uppercase text-dark text-center pb-3">
+            <h2 class="display-7">Shop Our Insta</h2>
+          </div>
+          <div class="d-flex flex-wrap">
+            <figure class="instagram-item pe-2">
+              <a href="https://templatesjungle.com/" class="image-link position-relative">
+                <img src="/static/sellers/images/insta-item1.jpg" alt="instagram" class="insta-image">
+                <div class="icon-overlay position-absolute d-flex justify-content-center">
+                  <svg class="instagram">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </div>
+              </a>
+            </figure>
+            <figure class="instagram-item pe-2">
+              <a href="https://templatesjungle.com/" class="image-link position-relative">
+                <img src="/static/sellers/images/insta-item2.jpg" alt="instagram" class="insta-image">
+                <div class="icon-overlay position-absolute d-flex justify-content-center">
+                  <svg class="instagram">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </div>
+              </a>
+            </figure>
+            <figure class="instagram-item pe-2">
+              <a href="https://templatesjungle.com/" class="image-link position-relative">
+                <img src="/static/sellers/images/insta-item3.jpg" alt="instagram" class="insta-image">
+                <div class="icon-overlay position-absolute d-flex justify-content-center">
+                  <svg class="instagram">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </div>
+              </a>
+            </figure>
+            <figure class="instagram-item pe-2">
+              <a href="https://templatesjungle.com/" class="image-link position-relative">
+                <img src="/static/sellers/images/insta-item4.jpg" alt="instagram" class="insta-image">
+                <div class="icon-overlay position-absolute d-flex justify-content-center">
+                  <svg class="instagram">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </div>
+              </a>
+            </figure>
+            <figure class="instagram-item pe-2">
+              <a href="https://templatesjungle.com/" class="image-link position-relative">
+                <img src="/static/sellers/images/insta-item5.jpg" alt="instagram" class="insta-image">
+                <div class="icon-overlay position-absolute d-flex justify-content-center">
+                  <svg class="instagram">
+                    <use xlink:href="#instagram"></use>
+                  </svg>
+                </div>
+              </a>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+   <!-- ================= SELLER FOOTER ================= -->
+<footer id="footer" class="seller-footer">
+
+    <div class="container">
+
+        <!-- Seller CTA -->
+        <div class="seller-footer-cta">
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+                    <span class="seller-badge">
+                        <i class="fa fa-rocket me-2"></i>
+                        GADGET HUB SELLER CENTER
+                    </span>
+
+                    <h2 class="mt-3 mb-2">
+                        Grow Your Business With
+                        <span>Gadget Hub</span>
+                    </h2>
+
+                    <p class="mb-0">
+                        Add your gadgets, manage your products, update prices,
+                        create offers and reach more customers from one powerful
+                        seller platform.
+                    </p>
+                </div>
+
+                <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0">
+                    <a href="/myapp/seller_add_product_get/#a" class="seller-cta-btn">
+                        <i class="fa fa-plus-circle me-2"></i>
+                        Add New Product
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Footer Content -->
+        <div class="row gy-5 py-5">
+
+            <!-- Brand -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="seller-brand">
+
+                    <div class="brand-icon">
+                        <i class="fa fa-mobile-alt"></i>
+                    </div>
+
+                    <div>
+                        <h3>GADGET <span>HUB</span></h3>
+                        <small>SELLER CENTER</small>
+                    </div>
+
+                </div>
+
+                <p class="seller-description">
+                    Your complete marketplace solution to sell gadgets,
+                    manage inventory, track products and connect with
+                    customers.
+                </p>
+
+                <!-- Stats -->
+                <div class="seller-stats">
+
+                    <div>
+                        <strong>24/7</strong>
+                        <small>Platform</small>
+                    </div>
+
+                    <div>
+                        <strong>Easy</strong>
+                        <small>Management</small>
+                    </div>
+
+                    <div>
+                        <strong>Fast</strong>
+                        <small>Growth</small>
+                    </div>
+
+                </div>
+
+                <!-- Social -->
+                <div class="seller-social mt-4">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Seller -->
+            <div class="col-lg-2 col-md-6">
+
+                <h5 class="seller-footer-title">
+                    <i class="fa fa-store me-2"></i>
+                    Seller
+                </h5>
+
+                <ul class="seller-links">
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/myapp/seller_add_product_get/#a">
+                            <i class="fa fa-chevron-right"></i>
+                            Add Product
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/myapp/sellers_view_product_get/#a">
+                            <i class="fa fa-chevron-right"></i>
+                            My Products
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Orders
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Offers
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Manage -->
+            <div class="col-lg-3 col-md-6">
+
+                <h5 class="seller-footer-title">
+                    <i class="fa fa-chart-line me-2"></i>
+                    Manage Store
+                </h5>
+
+                <ul class="seller-links">
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Inventory Management
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Product Availability
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Price Management
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Seller Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-chevron-right"></i>
+                            Sales Reports
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Support -->
+            <div class="col-lg-3 col-md-6">
+
+                <h5 class="seller-footer-title">
+                    <i class="fa fa-headset me-2"></i>
+                    Seller Support
+                </h5>
+
+                <p class="support-text">
+                    Have questions about your store? Our support team
+                    is ready to help you.
+                </p>
+
+                <div class="support-box">
+
+                    <div class="support-icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <small>Email Support</small>
+                        <a href="mailto:support@gadgethub.com">
+                            support@gadgethub.com
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="support-box">
+
+                    <div class="support-icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+
+                    <div>
+                        <small>Seller Helpline</small>
+                        <a href="tel:+919876543210">
+                            +91 98765 43210
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bottom -->
+    <div class="seller-footer-bottom">
+
+        <div class="container">
+
+            <div class="row align-items-center gy-3">
+
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">
+                        © 2026
+                        <strong>Gadget Hub</strong>.
+                        All Rights Reserved.
+                    </p>
+                </div>
+
+                <div class="col-md-6 text-center text-md-end">
+
+                    <a href="#">Privacy Policy</a>
+
+                    <span>|</span>
+
+                    <a href="#">Terms & Conditions</a>
+
+                    <span>|</span>
+
+                    <a href="#">Seller Policy</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= SELLER FOOTER CSS ================= -->
+<style>
+
+    .seller-footer {
+        position: relative;
+        overflow: hidden;
+        color: #aeb8c8;
+        background:
+            radial-gradient(circle at 10% 20%, rgba(13, 110, 253, 0.15), transparent 30%),
+            radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.10), transparent 30%),
+            #080d18;
+    }
+
+    .seller-footer::before {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: rgba(13, 110, 253, 0.08);
+        filter: blur(80px);
+        top: -150px;
+        right: -100px;
+    }
+
+    .seller-footer-cta {
+        position: relative;
+        margin-top: 50px;
+        padding: 35px 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(
+            135deg,
+            rgba(13, 110, 253, 0.20),
+            rgba(17, 24, 39, 0.90)
+        );
+        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .seller-footer-cta h2 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .seller-footer-cta h2 span {
+        color: #0d6efd;
+    }
+
+    .seller-footer-cta p {
+        max-width: 700px;
+        color: #aeb8c8;
+    }
+
+    .seller-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 14px;
+        border-radius: 50px;
+        color: #69a7ff;
+        background: rgba(13,110,253,0.12);
+        border: 1px solid rgba(13,110,253,0.25);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .seller-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 14px 25px;
+        border-radius: 10px;
+        color: #fff;
+        background: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all .3s ease;
+        box-shadow: 0 8px 25px rgba(13,110,253,.30);
+    }
+
+    .seller-cta-btn:hover {
+        color: #fff;
+        background: #0b5ed7;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(13,110,253,.45);
+    }
+
+    /* Brand */
+
+    .seller-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .brand-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 25px;
+        background: linear-gradient(135deg, #0d6efd, #00bfff);
+        box-shadow: 0 8px 25px rgba(13,110,253,.30);
+    }
+
+    .seller-brand h3 {
+        margin: 0;
+        color: #fff;
+        font-size: 23px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .seller-brand h3 span {
+        color: #0d6efd;
+    }
+
+    .seller-brand small {
+        color: #72809a;
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .seller-description {
+        max-width: 360px;
+        line-height: 1.8;
+        color: #8995a8;
+    }
+
+    /* Stats */
+
+    .seller-stats {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .seller-stats div {
+        min-width: 90px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .seller-stats strong {
+        display: block;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .seller-stats small {
+        color: #748096;
+        font-size: 11px;
+    }
+
+    /* Social */
+
+    .seller-social {
+        display: flex;
+        gap: 10px;
+    }
+
+    .seller-social a {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        color: #9ba8ba;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.07);
+        text-decoration: none;
+        transition: .3s;
+    }
+
+    .seller-social a:hover {
+        color: #fff;
+        background: #0d6efd;
+        transform: translateY(-3px);
+    }
+
+    /* Titles */
+
+    .seller-footer-title {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+    }
+
+    .seller-footer-title i {
+        color: #0d6efd;
+    }
+
+    /* Links */
+
+    .seller-links {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .seller-links li {
+        margin-bottom: 13px;
+    }
+
+    .seller-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #8f9bad;
+        text-decoration: none;
+        transition: .25s;
+    }
+
+    .seller-links a i {
+        color: #0d6efd;
+        font-size: 8px;
+        transition: .25s;
+    }
+
+    .seller-links a:hover {
+        color: #fff;
+        padding-left: 5px;
+    }
+
+    .seller-links a:hover i {
+        color: #00bfff;
+    }
+
+    /* Support */
+
+    .support-text {
+        color: #8995a8;
+        line-height: 1.7;
+        font-size: 14px;
+    }
+
+    .support-box {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 13px;
+        margin-top: 13px;
+        border-radius: 12px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .support-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        color: #0d6efd;
+        background: rgba(13,110,253,.12);
+    }
+
+    .support-box small {
+        display: block;
+        color: #6f7b90;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .support-box a {
+        display: block;
+        color: #fff;
+        font-size: 13px;
+        text-decoration: none;
+        margin-top: 2px;
+    }
+
+    .support-box a:hover {
+        color: #0d6efd;
+    }
+
+    /* Bottom */
+
+    .seller-footer-bottom {
+        position: relative;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,.07);
+        background: rgba(0,0,0,.25);
+    }
+
+    .seller-footer-bottom p {
+        color: #697589;
+        font-size: 13px;
+    }
+
+    .seller-footer-bottom strong {
+        color: #fff;
+    }
+
+    .seller-footer-bottom a {
+        color: #697589;
+        font-size: 12px;
+        text-decoration: none;
+        margin: 0 7px;
+        transition: .2s;
+    }
+
+    .seller-footer-bottom a:hover {
+        color: #0d6efd;
+    }
+
+    .seller-footer-bottom span {
+        color: #374152;
+    }
+
+    @media (max-width: 767px) {
+
+        .seller-footer-cta {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .seller-footer-cta h2 {
+            font-size: 24px;
+        }
+
+        .seller-stats {
+            justify-content: center;
+        }
+
+        .seller-footer-bottom {
+            text-align: center;
+        }
+
+    }
+
+</style>
+<!-- ================= END SELLER FOOTER ================= -->
+
+    {% if messages %}
+                    <div class="messages-container">
+                        {% for i in messages %}
+                        <div class="alert alert-info py-2 mb-2 rounded-3 text-center" role="alert">
+                            {{ i }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+
+    <script src="/static/sellers/js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="/static/sellers/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/sellers/js/plugins.js"></script>
+    <script type="text/javascript" src="/static/sellers/js/script.js"></script>
+
+
+
+           <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+    // Extend DataTables with custom date filtering
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+      const min = document.getElementById('fromDate').value;
+      const max = document.getElementById('toDate').value;
+      const dateStr = data[1]; // Date is column index 1
+      const date = new Date(dateStr);
+
+      const minDate = min ? new Date(min) : null;
+      const maxDate = max ? new Date(max) : null;
+
+      if ((!minDate || date >= minDate) && (!maxDate || date <= maxDate)) {
+        return true;
+      }
+      return false;
+    });
+
+    // Initialize DataTable and bind filter events
+    $(document).ready(function () {
+      const table = $('#complaintTable').DataTable({
+        pageLength: 5
+      });
+
+      $('#fromDate, #toDate').on('change', function () {
+        table.draw();
+      });
+    });
+  </script>
+  </body>
+</html>

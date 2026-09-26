@@ -1,0 +1,139 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Add stock</title>#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#   #}
+{#</head>#}
+{#<body>#}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{#    <div class="container">#}
+{#        <div class="row justify-content-center">#}
+{#            <div class="col-md-6">#}
+{#                <h2 class="text-center">Add offers</h2>#}
+{#                <form method="post" action="/myapp/sellers_add_offer_post/">#}
+{#                    {% csrf_token %}#}
+{#                    <input type="hidden" value="{{ data.id }}" name="id">#}
+{#                    <div class="form-group">#}
+{#                        <label for="username">offer price</label>#}
+{#                        <input type="text" class="form-control" id="offer price" name="offers_price" placeholder="Enter your offer price" required>#}
+{#                    </div>#}
+{#                     <div class="form-group">#}
+{#                        <label for="username">Expire date</label>#}
+{#                        <input type="date" class="form-control" id="expire date" name="expiry_date" placeholder="Enter your expire date" required>#}
+{#                    </div>#}
+{##}
+{#                    <button type="submit" class="btn btn-primary btn-block">Add offers </button>#}
+{#                </form>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
+{#    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+
+{% extends 'seller/index.html' %}
+{% block body %}
+<!-- Custom Glassmorphism Styles -->
+<style>
+    .glass-wrapper {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.05) 0%, rgba(30, 41, 59, 0.1) 100%);
+        padding: 40px 0;
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+        padding: 40px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    }
+    .glass-card h2 {
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: #1e293b;
+        margin-bottom: 30px;
+    }
+    .glass-card label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+    .glass-input {
+        background: rgba(255, 255, 255, 0.6) !important;
+        border: 1px solid rgba(203, 213, 225, 0.8) !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        height: auto !important;
+        color: #1e293b !important;
+        transition: all 0.2s ease-in-out;
+    }
+    .glass-input:focus {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+    }
+    .glass-btn {
+    background: #111111 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+    color: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.25s ease;
+}
+.glass-btn:hover {
+    transform: translateY(-3px);
+    background: #000000 !important;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+</style>
+
+<div class="glass-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="glass-card">
+                    <h2 class="text-center">Add offers</h2>
+                    <form method="post" action="/myapp/sellers_add_offer_post/">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ data.id }}" name="id">
+
+                        <div class="form-group mb-4">
+                            <label for="username">Offer price</label>
+                            <input type="text" class="form-control glass-input" id="offer price" name="offers_price" placeholder="Enter your offer price" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="username">Expire date</label>
+                            <input type="date" class="form-control glass-input" id="expire date" name="expiry_date" placeholder="Enter your expire date" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block glass-btn">Add offers</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

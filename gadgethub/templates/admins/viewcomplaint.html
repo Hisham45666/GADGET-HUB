@@ -1,0 +1,392 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Sent Complaints</title>#}
+{#  <!-- Bootstrap 5 CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#  <div class="container mt-5">#}
+{#    <h3 class="mb-4">My Sent Complaints</h3>#}
+{##}
+{#    <!-- Date Filter Inputs -->#}
+{#    <div class="row mb-3">#}
+{#      <div class="col-md-4">#}
+{#        <label for="fromDate" class="form-label">From Date</label>#}
+{#        <input type="date" id="fromDate" class="form-control">#}
+{#      </div>#}
+{#      <div class="col-md-4">#}
+{#        <label for="toDate" class="form-label">To Date</label>#}
+{#        <input type="date" id="toDate" class="form-control">#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <!-- Complaints Table -->#}
+{#    <div class="table-responsive">#}
+{#      <table class="table table-bordered table-hover" id="complaintTable">#}
+{#        <thead class="table-light">#}
+{#          <tr>#}
+{#            <th>Sl. No.</th>#}
+{#            <th>Date</th>#}
+{#            <th>From</th>#}
+{#            <th>Complaint</th>#}
+{#            <th>Status</th>#}
+{#             <th>Replay</th>#}
+{#            <th>Action</th>#}
+{#          </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{# {% for i in data %}#}
+{#          <tr>#}
+{#            <td>{{ forloop.counter }}</td>#}
+{#            <td>{{ i.date }}</td>#}
+{#            <td>{{ i.AUTHUSER.username }}</td>#}
+{#            <td>{{ i.compliant }}</td>#}
+{#            <td>{{ i.status }}</td>#}
+{#          <td>#}
+{#              {%  if i.status == "pending" %}#}
+{##}
+{#              <a href="/myapp/admin_sentreplay/{{ i.id }}">Replay</a>#}
+{##}
+{#              {% else %}#}
+{##}
+{#              {{ i.replay }}#}
+{##}
+{#              {% endif %}#}
+{##}
+{#          </td>#}
+{#          </tr>#}
+{# {% endfor %}#}
+{##}
+{##}
+{##}
+{#          <!-- Add more rows as needed -->#}
+{#        </tbody>#}
+{#      </table>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{##}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{#    {% endblock %}#}
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #111827;
+        --paper: #F6F3EA;
+        --card: rgba(255, 255, 255, 0.88);
+        --gold: #D97706;
+        --gold-glow: rgba(217, 119, 6, 0.22);
+        --teal: #0D9488;
+        --teal-hover: #0F766E;
+        --line: rgba(203, 213, 225, 0.7);
+        --muted: #4B5563;
+    }
+
+    .table-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--ink);
+        padding: 48px 0;
+        position: relative;
+    }
+
+    /* Vibrant ambient background lighting */
+    .table-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 5%;
+        left: 2%;
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(circle, rgba(13, 148, 136, 0.12) 0%, rgba(217, 119, 6, 0.08) 50%, transparent 75%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .table-card {
+        background: var(--card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        border-radius: 24px;
+        padding: 44px;
+        box-shadow: 0 35px 70px -20px rgba(17, 24, 39, 0.2), inset 0 1px 2px rgba(255, 255, 255, 1);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    /* Glowing geometric golden accent ring in the corner */
+    .table-card::after {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        border: 2px solid var(--gold-glow);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(217, 119, 6, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .table-header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .table-card h3 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 2rem;
+        color: var(--ink);
+        letter-spacing: -0.025em;
+        margin-bottom: 6px;
+    }
+
+    .table-subtext {
+        color: var(--muted);
+        font-size: 0.96rem;
+        font-weight: 450;
+        margin-bottom: 0;
+    }
+
+    /* Filters Box */
+    .filter-box {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(203, 213, 225, 0.6);
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.92rem;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--ink);
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        background: #ffffff;
+    }
+
+    /* Enhanced Table Styling */
+    .table-responsive {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .table {
+        margin-bottom: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .table thead th {
+        background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(217, 119, 6, 0.04));
+        color: var(--teal-hover);
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        border-bottom: 2px solid var(--line);
+        padding: 16px 18px;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+    }
+
+    .table tbody td {
+        padding: 16px 18px;
+        vertical-align: middle;
+        font-size: 0.91rem;
+        color: var(--ink);
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.4);
+        transition: all 0.2s ease;
+    }
+
+    .table tbody tr:first-child td {
+        border-top: none;
+    }
+
+    .table tbody tr:hover td {
+        background: rgba(13, 148, 136, 0.04);
+    }
+
+    /* Custom badges for status */
+    .badge-pending {
+        background-color: rgba(217, 119, 6, 0.12);
+        color: #B45309;
+        border: 1px solid rgba(217, 119, 6, 0.3);
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+    }
+
+    .badge-resolved {
+        background-color: rgba(13, 148, 136, 0.12);
+        color: var(--teal-hover);
+        border: 1px solid rgba(13, 148, 136, 0.3);
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+    }
+
+    /* Reply Action Button styling */
+    .btn-reply {
+        background: linear-gradient(135deg, #0D9488, #0F766E);
+        border: none;
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(13, 148, 136, 0.25);
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s ease;
+    }
+
+    .btn-reply:hover {
+        background: linear-gradient(135deg, #0F766E, #115E59);
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 14px rgba(13, 148, 136, 0.35);
+        text-decoration: none;
+    }
+
+    .row-index {
+        font-weight: 700;
+        color: var(--gold);
+        font-size: 0.85rem;
+        background: rgba(217, 119, 6, 0.1);
+        padding: 3px 7px;
+        border-radius: 6px;
+    }
+
+    .complaint-text {
+        max-width: 250px;
+        white-space: normal;
+        word-break: break-word;
+    }
+</style>
+
+<!-- Load Fraunces Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="container table-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="table-card">
+
+                <div class="table-header-flex">
+                    <div>
+                        <h3>My Sent Complaints</h3>
+                        <p class="table-subtext">Review submitted reports, verify resolution status, and manage feedback replies.</p>
+                    </div>
+                </div>
+
+             {% for i in messages %}
+            <div class="message-alert">
+              <i class="fa-solid fa-circle-info"></i> {{ i }}
+            </div>
+          {% endfor %}
+
+                <!-- Date Filter Inputs -->
+                <div class="filter-box">
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0">
+                            <label for="fromDate" class="form-label">From Date</label>
+                            <input type="date" id="fromDate" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="toDate" class="form-label">To Date</label>
+                            <input type="date" id="toDate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complaints Table -->
+                <div class="table-responsive">
+                    <table class="table" id="complaintTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">Sl. No.</th>
+                                <th style="width: 14%;">Date</th>
+                                <th style="width: 16%;">From</th>
+                                <th style="width: 26%;">Complaint</th>
+                                <th style="width: 14%;">Status</th>
+                                <th style="width: 22%;">Reply / Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td><span class="row-index">#{{ forloop.counter }}</span></td>
+                                <td style="font-weight: 500; color: #4B5563;">{{ i.date }}</td>
+                                <td><span style="font-weight: 600; color: #1F2937;">{{ i.AUTHUSER.username }}</span></td>
+                                <td>
+                                    <div class="complaint-text">{{ i.compliant }}</div>
+                                </td>
+                                <td>
+                                    {% if i.status == "pending" %}
+                                        <span class="badge-pending">Pending</span>
+                                    {% else %}
+                                        <span class="badge-resolved">{{ i.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if i.status == "pending" %}
+                                        <a href="/myapp/admin_sentreplay/{{ i.id }}#a" class="btn-reply">Reply Now</a>
+                                    {% else %}
+                                        <div style="font-size: 0.88rem; color: #374151; font-style: italic;">{{ i.replay }}</div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

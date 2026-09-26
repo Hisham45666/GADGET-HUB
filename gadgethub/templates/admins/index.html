@@ -1,0 +1,911 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GADGET HUB - Welding Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/static/GADGET HUB/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/GADGET HUB/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/static/GADGET HUB/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/static/GADGET HUB/css/style.css" rel="stylesheet">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-primary text-white d-none d-lg-flex wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-3">
+            <div class="d-flex align-items-center">
+                <a href="/myapp/admin_home/">
+                    <h2 class="text-white fw-bold m-0">GADGET HUB</h2>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-white sticky-top wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light p-lg-0">
+                <a href="/myapp/admin_home/" class="navbar-brand d-lg-none">
+                    <h1 class="fw-bold m-0">GADGET HUB</h1>
+                </a>
+                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="/myapp/admin_home/" class="nav-item nav-link active">Home</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sellers</a>
+                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
+
+                                <a href="/myapp/admin_viewsellers_and_approve_reject/#a" class="dropdown-item">Verify Sellers</a>
+
+                                <a href="/myapp/admin_view_approved_seller/#a"class="dropdown-item">Approved Sellers</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>
+                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
+
+                                <a href="/myapp/admin_add_category_get/#a" class="dropdown-item">Add</a>
+
+                                <a href="/myapp/admin_viewcategory/#a" class="dropdown-item">View</a>
+                            </div>
+                        </div>
+
+                        <a href="/myapp/admin_view_users/#a" class="nav-item nav-link">Users</a>
+                        <a href="/myapp/admin_viewcomplaint/#a" class="nav-item nav-link">View compliants</a>
+                        <a href="/myapp/admin_viewreviews/#a" class="nav-item nav-link">Reviews</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Settings</a>
+                            <div class="dropdown-menu bg-light rounded-0 rounded-bottom m-0">
+
+                                <a href="/myapp/admin_change_password/#a" class="dropdown-item">Change password</a>
+
+
+                            </div>
+                        </div>
+{#                        <a href="/myapp/admin_viewsellers_and_approve_reject/" class="nav-item nav-link">View Sellers</a>#}
+                    </div>
+                    <div class="ms-auto d-none d-lg-block">
+                                                <a href="/myapp/logout_get/" onclick="return confirm('Are you sure you want to logout ')"
+ class="btn btn-primary py-2 px-3">LOGOUT</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-6 wow fadeIn" data-wow-delay="0.1s">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1">
+                    <img class="img-fluid" src="/static/GADGET HUB/img/slider7.png" alt="Image">
+                </button>
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
+                    <img class="img-fluid" src="/static/GADGET HUB/img/slider5.png" alt="Image">
+                </button>
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
+                    <img class="img-fluid" src="/static/GADGET HUB/img/slider8.png" alt="Image">
+                </button>
+            </div>
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img class="w-100" src="/static/GADGET HUB/img/slider7.png" alt="Image">
+        <div class="carousel-caption">
+            <h1 class="display-1 text-uppercase text-white mb-4 animated zoomIn">
+                Manage Your Gadget Marketplace
+            </h1>
+            <a href="/myapp/admin_viewcategory/#a" class="btn btn-primary py-3 px-4">Manage Category</a>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img class="w-100" src="/static/GADGET HUB/img/slider5.png" alt="Image">
+        <div class="carousel-caption">
+            <h1 class="display-1 text-uppercase text-white mb-4 animated zoomIn">
+                Manage Sellers & Customers
+            </h1>
+            <a href="/myapp/admin_view_users/#a" class="btn btn-primary py-3 px-4">View Customers</a>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img class="w-100" src="/static/GADGET HUB/img/slider8.png" alt="Image">
+        <div class="carousel-caption">
+            <h1 class="display-1 text-uppercase text-white mb-4 animated zoomIn">
+                Monitor Products, Stock & Offers
+            </h1>
+{#            <a href="/myapp/admin_viewsellers_and_approve_reject/#a" class="btn btn-primary py-3 px-4">View Sellers</a>#}
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid pt-6 pb-6" id="a">
+
+        {% block body %}
+       <section class="py-5" style="background: linear-gradient(135deg, #f8fbff 0%, #eef5ff 100%);">
+    <div class="container py-5">
+
+        <!-- Heading -->
+        <div class="text-center mx-auto mb-5 wow fadeIn" data-wow-delay="0.1s" style="max-width: 800px;">
+            <span class="text-primary fw-bold text-uppercase"
+                style="letter-spacing: 2px;">
+                Welcome to Gadget Hub
+            </span>
+
+            <h1 class="display-5 fw-bold text-dark mt-3 mb-4">
+                Find the Best Gadgets at the <span class="text-primary">Best Price</span>
+            </h1>
+
+            <p class="text-muted fs-5">
+                Gadget Hub makes it simple to discover, compare and choose gadgets
+                from multiple sellers. Explore products, check availability,
+                compare prices and find the best offers — all in one place.
+            </p>
+        </div>
+
+        <!-- Features -->
+        <div class="row g-4 justify-content-center mb-5">
+
+            <!-- Seller -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="bg-white rounded-4 shadow-sm p-4 h-100 text-center"
+                    style="transition: 0.3s;">
+
+                    <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
+                        style="width: 80px; height: 80px;">
+                        <i class="fa fa-store fa-2x"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Multiple Sellers
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Sellers can easily add their gadgets, update product
+                        information, manage stock and provide attractive offers
+                        to customers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Compare -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="bg-white rounded-4 shadow-sm p-4 h-100 text-center"
+                    style="transition: 0.3s;">
+
+                    <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
+                        style="width: 80px; height: 80px;">
+                        <i class="fa fa-balance-scale fa-2x"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Compare Products
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Users can find the same gadget from different sellers
+                        and compare prices, specifications, availability and
+                        seller offers before making a decision.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Offers -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="bg-white rounded-4 shadow-sm p-4 h-100 text-center"
+                    style="transition: 0.3s;">
+
+                    <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
+                        style="width: 80px; height: 80px;">
+                        <i class="fa fa-tags fa-2x"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Best Offers
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Discover the best available deals by comparing seller
+                        prices, discounts, stock availability and special
+                        offers in one convenient platform.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- How It Works -->
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">
+                How Gadget Hub Works
+            </h2>
+            <p class="text-muted">
+                Simple, transparent and convenient
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-3 col-6 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="mb-3">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
+                        style="width: 55px; height: 55px;">
+                        01
+                    </span>
+                </div>
+                <h5 class="fw-bold">Seller Adds</h5>
+                <p class="small text-muted">
+                    Sellers add their gadgets and offers.
+                </p>
+            </div>
+
+            <div class="col-md-3 col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <div class="mb-3">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
+                        style="width: 55px; height: 55px;">
+                        02
+                    </span>
+                </div>
+                <h5 class="fw-bold">Users Explore</h5>
+                <p class="small text-muted">
+                    Users discover available gadgets.
+                </p>
+            </div>
+
+            <div class="col-md-3 col-6 text-center wow fadeInUp" data-wow-delay="0.3s">
+                <div class="mb-3">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
+                        style="width: 55px; height: 55px;">
+                        03
+                    </span>
+                </div>
+                <h5 class="fw-bold">Compare</h5>
+                <p class="small text-muted">
+                    Compare prices, stock and offers.
+                </p>
+            </div>
+
+            <div class="col-md-3 col-6 text-center wow fadeInUp" data-wow-delay="0.4s">
+                <div class="mb-3">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold"
+                        style="width: 55px; height: 55px;">
+                        04
+                    </span>
+                </div>
+                <h5 class="fw-bold">Choose Best</h5>
+                <p class="small text-muted">
+                    Select the best deal for you.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-5">
+            <div class="d-inline-block bg-primary text-white rounded-4 px-4 px-md-5 py-4 shadow">
+                <h3 class="fw-bold mb-2">
+                    One Gadget. Multiple Sellers. Better Choices.
+                </h3>
+
+                <p class="mb-0">
+                    Compare before you buy and get the deal that suits you best.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+            {% endblock %}
+{#    </div>#}
+{#    <!-- About End -->#}
+{##}
+{##}
+{#    <!-- Service Start -->#}
+{#    <div class="container-fluid service pt-6 pb-6">#}
+{#        <div class="container">#}
+{#            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">#}
+{#                <h1 class="display-6 text-uppercase mb-5">Reliable & High-Quality Welding Services</h1>#}
+{#            </div>#}
+{#            <div class="row g-4">#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-1.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Metal Works</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-2.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Steel welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-3.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">pipe welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-4.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Custom welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-5.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Steel welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-6.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Metal Work</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-7.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Custom Welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">#}
+{#                    <div class="service-item">#}
+{#                        <div class="service-inner pb-5">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/service-8.jpg" alt="">#}
+{#                            <div class="service-text px-5 pt-4">#}
+{#                                <h5 class="text-uppercase">Pipe Welding</h4>#}
+{#                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.#}
+{#                                    </p>#}
+{#                            </div>#}
+{#                            <a class="btn btn-light px-3" href="">Read More<i#}
+{#                                    class="bi bi-chevron-double-right ms-1"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <!-- Service End -->#}
+{##}
+{##}
+{#    <!-- Team Start -->#}
+{#    <div class="container-fluid team pt-6 pb-6">#}
+{#        <div class="container">#}
+{#            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">#}
+{#                <h1 class="display-6 text-uppercase mb-5">Meet Our Professional and Experience Welder</h1>#}
+{#            </div>#}
+{#            <div class="row g-4">#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">#}
+{#                    <div class="team-item">#}
+{#                        <div class="position-relative overflow-hidden">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/team-1.jpg" alt="">#}
+{#                            <div class="team-social">#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-facebook-f"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-twitter"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-linkedin-in"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-youtube"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="text-center p-4">#}
+{#                            <h5 class="mb-1">Alex Robin</h5>#}
+{#                            <span>Welder</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">#}
+{#                    <div class="team-item">#}
+{#                        <div class="position-relative overflow-hidden">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/team-2.jpg" alt="">#}
+{#                            <div class="team-social">#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-facebook-f"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-twitter"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-linkedin-in"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-youtube"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="text-center p-4">#}
+{#                            <h5 class="mb-1">Andrew Bon</h5>#}
+{#                            <span>Welder</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">#}
+{#                    <div class="team-item">#}
+{#                        <div class="position-relative overflow-hidden">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/team-3.jpg" alt="">#}
+{#                            <div class="team-social">#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-facebook-f"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-twitter"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-linkedin-in"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-youtube"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="text-center p-4">#}
+{#                            <h5 class="mb-1">Martin Tompson</h5>#}
+{#                            <span>Welder</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">#}
+{#                    <div class="team-item">#}
+{#                        <div class="position-relative overflow-hidden">#}
+{#                            <img class="img-fluid w-100" src="/static/GADGET HUB/img/team-4.jpg" alt="">#}
+{#                            <div class="team-social">#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-facebook-f"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-twitter"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-linkedin-in"></i></a>#}
+{#                                <a class="btn btn-square btn-dark mx-1" href=""><i class="fab fa-youtube"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="text-center p-4">#}
+{#                            <h5 class="mb-1">Clarabelle Samber</h5>#}
+{#                            <span>Welder</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Team End -->#}
+{##}
+{##}
+{#    <!-- Testimonial Start -->#}
+{#    <div class="container-fluid pt-6 pb-6">#}
+{#        <div class="container">#}
+{#            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">#}
+{#                <h1 class="display-6 text-uppercase mb-5">What They’re Talking About Our Welding Work</h1>#}
+{#            </div>#}
+{#            <div class="row g-5 align-items-center">#}
+{#                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">#}
+{#                    <div class="testimonial-img">#}
+{#                        <div class="animated flip infinite">#}
+{#                            <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-1.jpg" alt="">#}
+{#                        </div>#}
+{#                        <div class="animated flip infinite">#}
+{#                            <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-2.jpg" alt="">#}
+{#                        </div>#}
+{#                        <div class="animated flip infinite">#}
+{#                            <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-3.jpg" alt="">#}
+{#                        </div>#}
+{#                        <div class="animated flip infinite">#}
+{#                            <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-4.jpg" alt="">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">#}
+{#                    <div class="owl-carousel testimonial-carousel">#}
+{#                        <div class="testimonial-item">#}
+{#                            <div class="d-flex align-items-center mb-4">#}
+{#                                <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-1.jpg" alt="">#}
+{#                                <div class="ms-3">#}
+{#                                    <div class="mb-2">#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                    </div>#}
+{#                                    <h5 class="text-uppercase">Client Name</h5>#}
+{#                                    <span>Profession</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore#}
+{#                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                            <div class="d-flex align-items-center mb-4">#}
+{#                                <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-2.jpg" alt="">#}
+{#                                <div class="ms-3">#}
+{#                                    <div class="mb-2">#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                    </div>#}
+{#                                    <h5 class="text-uppercase">Client Name</h5>#}
+{#                                    <span>Profession</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore#}
+{#                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                            <div class="d-flex align-items-center mb-4">#}
+{#                                <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-3.jpg" alt="">#}
+{#                                <div class="ms-3">#}
+{#                                    <div class="mb-2">#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                    </div>#}
+{#                                    <h5 class="text-uppercase">Client Name</h5>#}
+{#                                    <span>Profession</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore#}
+{#                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                            <div class="d-flex align-items-center mb-4">#}
+{#                                <img class="img-fluid" src="/static/GADGET HUB/img/testimonial-4.jpg" alt="">#}
+{#                                <div class="ms-3">#}
+{#                                    <div class="mb-2">#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                        <i class="far fa-star text-primary"></i>#}
+{#                                    </div>#}
+{#                                    <h5 class="text-uppercase">Client Name</h5>#}
+{#                                    <span>Profession</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore#}
+{#                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.#}
+{#                            </p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Testimonial End -->#}
+{##}
+{##}
+{#    <!-- Newsletter Start -->#}
+{#    <div class="container-fluid newsletter mt-6 wow fadeIn" data-wow-delay="0.1s">#}
+{#        <div class="container pb-5">#}
+{#            <div class="bg-white p-5 mb-5">#}
+{#                <div class="row g-5">#}
+{#                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s">#}
+{#                        <h1 class="display-6 text-uppercase mb-4">Newsletter</h1>#}
+{#                        <div class="d-flex">#}
+{#                            <i class="far fa-envelope-open fa-3x text-primary me-4"></i>#}
+{#                            <p class="fs-5 fst-italic mb-0">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore lorem ipsum.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">#}
+{#                        <div class="form-floating mb-3">#}
+{#                            <input type="email" class="form-control border-0 bg-light" id="mail" placeholder="Your Email">#}
+{#                            <label for="mail">Your Email</label>#}
+{#                        </div>#}
+{#                        <button class="btn btn-primary w-100 py-3" type="submit">Submit Now</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Newsletter Start -->#}
+{##}
+{##}
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+
+            <!-- Brand -->
+            <div class="col-lg-4 col-md-6">
+                <h2 class="text-uppercase text-white mb-4">
+                    <i class="fa fa-mobile-alt text-primary me-2"></i>
+                    Gadget Hub
+                </h2>
+
+                <p class="text-light mb-4">
+                    Discover, compare and choose the best gadgets from multiple
+                    sellers. Compare prices, availability and offers — all in one place.
+                </p>
+
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a class="btn btn-square btn-outline-light rounded-circle" href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6">
+                <h5 class="text-uppercase text-white mb-4">
+                    Quick Links
+                </h5>
+
+                <a class="btn btn-link text-light" href="#">
+                    Home
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    About Us
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Products
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Compare
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Contact Us
+                </a>
+            </div>
+
+            <!-- For Users -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase text-white mb-4">
+                    For Users
+                </h5>
+
+                <a class="btn btn-link text-light" href="#">
+                    Browse Gadgets
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Compare Products
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Best Offers
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    My Account
+                </a>
+
+                <a class="btn btn-link text-light" href="#">
+                    Support
+                </a>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-uppercase text-white mb-4">
+                    Contact Us
+                </h5>
+
+                <p class="mb-3">
+                    <i class="fa fa-map-marker-alt text-primary me-3"></i>
+                    Gadget Hub, Kerala, India
+                </p>
+
+                <p class="mb-3">
+                    <i class="fa fa-phone-alt text-primary me-3"></i>
+                    +91 98765 43210
+                </p>
+
+                <p class="mb-3">
+                    <i class="fa fa-envelope text-primary me-3"></i>
+                    support@gadgethub.com
+                </p>
+
+                <p class="mb-0">
+                    <i class="fa fa-clock text-primary me-3"></i>
+                    Mon - Sat: 9:00 AM - 7:00 PM
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Copyright Start -->
+<div class="container-fluid bg-black text-light copyright py-4">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; 2026
+                <a class="fw-bold text-primary" href="#">
+                    Gadget Hub
+                </a>
+                . All Rights Reserved.
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#" class="text-light me-3">
+                    Privacy Policy
+                </a>
+
+                <a href="#" class="text-light">
+                    Terms & Conditions
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+
+<!-- Back to Top -->
+<a href="#"
+   class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
+    <i class="bi bi-arrow-up"></i>
+</a>
+
+
+
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/GADGET HUB/lib/wow/wow.min.js"></script>
+    <script src="/static/GADGET HUB/lib/easing/easing.min.js"></script>
+    <script src="/static/GADGET HUB/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/GADGET HUB/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/static/GADGET HUB/js/main.js"></script>
+
+
+
+        <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+    // Extend DataTables with custom date filtering
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+      const min = document.getElementById('fromDate').value;
+      const max = document.getElementById('toDate').value;
+      const dateStr = data[1]; // Date is column index 1
+      const date = new Date(dateStr);
+
+      const minDate = min ? new Date(min) : null;
+      const maxDate = max ? new Date(max) : null;
+
+      if ((!minDate || date >= minDate) && (!maxDate || date <= maxDate)) {
+        return true;
+      }
+      return false;
+    });
+
+    // Initialize DataTable and bind filter events
+    $(document).ready(function () {
+      const table = $('#complaintTable').DataTable({
+        pageLength: 5
+      });
+
+      $('#fromDate, #toDate').on('change', function () {
+        table.draw();
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+

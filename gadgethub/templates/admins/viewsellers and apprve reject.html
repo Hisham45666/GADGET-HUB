@@ -1,0 +1,298 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Data Table</title>#}
+{#  <!-- Bootstrap CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{##}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#  <div class="container mt-5">#}
+{#    <h2 class="mb-4">view sellers and approve reject</h2>#}
+{#    <table id="complaintTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>#</th>#}
+{#          <th>Name</th>#}
+{#          <th>licience no</th>#}
+{#          <th>Email</th>#}
+{#          <th>Phone</th>#}
+{#          <th>Place</th>#}
+{#          <th>location</th>#}
+{#          <th>District</th>#}
+{#          <th>State</th>#}
+{#          <th>Pincode</th>#}
+{##}
+{#          <th>logo</th>#}
+{#            <th>Status</th>#}
+{#            <th>action</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#   {% for i in S1  %}#}
+{##}
+{##}
+{##}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.name }}</td>#}
+{#          <td>{{ i.license_no }}</td>#}
+{#          <td>{{ i.email }}</td>#}
+{#          <td>{{ i.phone }}</td>#}
+{#          <td>{{ i.place }}</td>#}
+{#          <td>{{ i.latitude }},{{ i.longtitude }}</td>#}
+{#            <td>{{ i.district }}</td>#}
+{#            <td>{{ i.state }}</td>#}
+{#            <td>{{ i.pincode }}</td>#}
+{##}
+{#          <td><img src="{{ i.logo }}" width="100px" height="100px" /></td>#}
+{#          <td>{{ i.status }}</td>#}
+{#            <td>#}
+{#                <a href="/myapp/admin_approve_sellers/{{ i.id }}" class="btn btn-success">Approve</a>#}
+{#                <a href="/myapp/admin_reject_sellers/{{ i.id }}" class="btn btn-danger">reject</a>#}
+{#            </td>#}
+{#        </tr>#}
+{#   {% endfor %}#}
+{##}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{##}
+{#{% for i in messages %}#}
+{#<p>#}
+{#    {{ i }}#}
+{#</p>#}
+{#{% endfor %}#}
+{##}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #1B2430;
+        --paper: #F0F5FA;
+        --card: #FFFFFF;
+        --accent: #2563EB;      /* primary blue */
+        --accent-dark: #1E40AF; /* darker blue for headers */
+        --teal: #2563EB;        /* approve button now blue */
+        --line: #D9E2EC;
+        --muted: #6B7280;
+    }
+
+.table-wrapper {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    padding: 40px 20px;
+    max-width: 1300px;      /* increased from 1100px */
+    margin: 0 auto;
+}
+
+    .table-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 28px;           /* reduced from 50px */
+        box-shadow: 0 20px 50px -20px rgba(27, 36, 48, 0.18);
+    }
+
+    .table-card h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 1.7rem;        /* reduced from 2.5rem */
+        color: var(--ink);
+        margin-bottom: 6px;
+        text-transform: capitalize;
+    }
+
+    .table-subtext {
+        color: var(--muted);
+        font-size: 0.95rem;       /* reduced from 1.15rem */
+        margin-bottom: 22px;
+    }
+
+    /* Table Layout */
+    .table-responsive {
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        overflow-x: auto;
+    }
+
+    .table {
+        margin-bottom: 0;
+        white-space: nowrap;
+        width: 100%;
+        font-size: 0.85rem;      /* overall smaller text */
+    }
+
+    .table thead th {
+        background: var(--accent-dark);
+        color: #FFFFFF;
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        border-bottom: 3px solid var(--accent);
+        padding: 12px 10px;       /* reduced from 24px 20px */
+        font-size: 0.85rem;       /* reduced from 1.05rem */
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .table tbody td {
+        padding: 10px 10px;       /* reduced from 24px 20px */
+        vertical-align: middle;
+        font-size: 0.9rem;        /* reduced from 1.1rem */
+        color: var(--ink);
+        border-top: 1px solid var(--line);
+        background: var(--card);
+    }
+
+    .table tbody tr:hover td {
+        background: rgba(37, 99, 235, 0.05);
+    }
+
+    /* Smaller Seller Logo */
+    .seller-logo {
+        width: 55px;              /* reduced from 95px */
+        height: 55px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid var(--line);
+    }
+
+    /* Smaller Action Buttons */
+    .btn-success {
+        background: var(--accent);
+        border-color: var(--accent);
+        font-size: 0.78rem;       /* reduced from 0.95rem */
+        font-weight: 600;
+        padding: 6px 12px;        /* reduced from 12px 22px */
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .btn-success:hover {
+        background: var(--accent-dark);
+        border-color: var(--accent-dark);
+    }
+
+    .btn-danger {
+        background: #DC2626;
+        border-color: #DC2626;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .btn-danger:hover {
+        background: #B91C1C;
+        border-color: #B91C1C;
+    }
+
+    /* Messages block */
+    .messages-container {
+        margin-top: 20px;
+    }
+    .alert-custom {
+        background: #DBEAFE;
+        border: 1px solid #93C5FD;
+        color: #1E40AF;
+        font-size: 0.9rem;
+        padding: 12px 18px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+</style>
+
+<!-- Load Theme Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="table-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="table-card">
+
+                <h2>Verify Sellers</h2>
+                <p class="table-subtext">Review pending seller applications, check credentials, and manage approval status with an enlarged, expanded layout view.</p>
+
+                <div class="table-responsive">
+                    <table id="complaintTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Sl No.</th>
+                                   <th>Logo</th>
+                                <th>Name</th>
+                                <th>Licence No</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Location</th>
+                                <th>Address</th>
+
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in S1 %}
+                            <tr>
+                                <td><strong>{{ forloop.counter }}</strong></td>
+                                 <td>
+                                    <img src="{{ i.logo }}" class="seller-logo" alt="Logo">
+                                </td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.license_no }}</td>
+                                <td>{{ i.email }}</td>
+                                <td>{{ i.phone }}</td>
+
+                                <td><small class="text-muted" style="font-size: 1rem;">{{ i.latitude }},<br> {{ i.longtitude }}</small></td>
+                                <td>{{ i.place }},<br>
+                                {{ i.district }},<br>
+                                {{ i.state }},
+                                {{ i.pincode }}</td>
+<td>
+<span class="badge" style="background: #EFF6FF; color: var(--accent-dark); border: 1px solid var(--line); padding: 6px 12px; font-size: 0.8rem; font-weight: 600;">
+    {{ i.status }}
+</span></td>
+                                <td>
+                                    <div class="d-flex gap-3">
+                                        <a href="/myapp/admin_approve_sellers/{{ i.id }}" class="btn btn-success">Approve</a>
+                                        <a href="/myapp/admin_reject_sellers/{{ i.id }}" class="btn btn-danger">Reject</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if messages %}
+                <div class="messages-container">
+                    {% for i in messages %}
+                    <div class="alert-custom">
+                        {{ i }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

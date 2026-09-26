@@ -1,0 +1,244 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>View profile</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{# #}
+{#</head>#}
+{#<body>#}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{#  <div class="container">#}
+{#    <h2 class="mb-4">View profile</h2>#}
+{#    <form>#}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Full Name</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span>{{ data.name }}</span>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="dob" class="col-sm-4 ">Email address</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span>{{ data.email }}</span>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">Phone Number</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span>{{ data.phone }}</span>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">Licience Number</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span>{{ data.license_no }}</span>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="place" class="col-sm-4 ">Address</label>#}
+{#        <div class="col-sm-8">#}
+{#             <span>{{ data.place }},{{ data.district }},{{ data.state }},{{ data.pincode }}</span>#}
+{##}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="photo" class="col-sm-4 ">logo</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span> <img src="{{ data.logo }}" width="100px" height="100px"> </span>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">location</label>#}
+{#        <div class="col-sm-8">#}
+{#            <span>{{ data.latitude }},{{ data.longtitude }}</span>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{##}
+{#          <a href="/myapp/seller_edit_profile_get/" class="btn btn-primary">Edit</a>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+{% extends 'seller/index.html' %}
+{% block body %}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    .elite-wrapper {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f4ed;
+        background-image:
+            radial-gradient(at 0% 0%, rgba(193, 143, 44, 0.08) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(31, 74, 91, 0.08) 0px, transparent 50%);
+        padding: 50px 0;
+    }
+    .elite-card {
+        background: #ffffff;
+        border: 1px solid rgba(193, 143, 44, 0.3);
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(27, 36, 48, 0.08), 0 2px 6px rgba(27, 36, 48, 0.04);
+        padding: 45px;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .elite-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 24px;
+        right: 24px;
+        height: 4px;
+        background: linear-gradient(90deg, #c18f2c, #1f4a5b);
+        border-radius: 0 0 4px 4px;
+    }
+    .elite-card h2 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #1b2430;
+        margin-bottom: 35px;
+        font-size: 2.3rem;
+    }
+    .profile-row {
+        display: flex;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid #ede8dc;
+    }
+    .profile-row:last-of-type {
+        border-bottom: none;
+    }
+    .profile-label {
+        font-weight: 700;
+        color: #1f4a5b;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        width: 35%;
+    }
+    .profile-value {
+        font-weight: 700;
+        color: #2c3e50;
+        font-size: 1.15rem;
+        width: 65%;
+    }
+    .profile-logo {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #d4cebe;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .btn-elite-edit {
+        background: #1f4a5b;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 30px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #fff;
+        transition: background 0.15s ease;
+        text-decoration: none;
+        display: inline-block;
+        letter-spacing: 0.5px;
+    }
+    .btn-elite-edit:hover {
+        background: #15323e;
+        color: #fff;
+    }
+</style>
+
+<div class="elite-wrapper">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center">
+      <div class="col-xl-9">
+        <div class="elite-card">
+
+          <div class="text-center mb-4">
+            <h2>View Profile</h2>
+          </div>
+
+          <div class="profile-container">
+            <div class="profile-row">
+              <div class="profile-label">Full Name</div>
+              <div class="profile-value">{{ data.name }}</div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">Email Address</div>
+              <div class="profile-value">{{ data.email }}</div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">Phone Number</div>
+              <div class="profile-value">{{ data.phone }}</div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">License Number</div>
+              <div class="profile-value">{{ data.license_no }}</div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">Address</div>
+              <div class="profile-value">{{ data.data.place }}, {{ data.district }}, {{ data.state }}, {{ data.pincode }}</div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">Logo</div>
+              <div class="profile-value">
+                <img src="{{ data.logo }}" class="profile-logo" alt="Seller Logo">
+              </div>
+            </div>
+
+            <div class="profile-row">
+              <div class="profile-label">Location</div>
+              <div class="profile-value">{{ data.latitude }}, {{ data.longtitude }}</div>
+            </div>
+
+            <div class="text-center mt-5">
+              <a href="/myapp/seller_edit_profile_get/#a" class="btn-elite-edit">Edit Profile</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

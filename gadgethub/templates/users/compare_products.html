@@ -1,0 +1,1791 @@
+{#{% extends 'users/index.html' %}#}
+{##}
+{#{% block body %}#}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#  <title>Compare Products</title>#}
+{##}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">#}
+{##}
+{#<style>#}
+{#body {#}
+{#    background-color: #f1f3f6;#}
+{#    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;#}
+{#}#}
+{##}
+{#.compare-container {#}
+{#    max-width: 1400px;#}
+{#    margin: 0 auto;#}
+{#    padding: 20px;#}
+{#}#}
+{##}
+{#.sticky-panel {#}
+{#    position: sticky;#}
+{#    top: 20px;#}
+{#    background: #fff;#}
+{#    border-radius: 8px;#}
+{#    padding: 20px;#}
+{#    box-shadow: 0 4px 12px rgba(0,0,0,0.08);#}
+{#    border-top: 4px solid #2874f0;#}
+{#}#}
+{##}
+{#.product-card {#}
+{#    background: #fff;#}
+{#    border-radius: 4px;#}
+{#    border: 1px solid #e0e0e0;#}
+{#    transition: box-shadow .2s, transform .2s;#}
+{#    height: 100%;#}
+{#    position: relative;#}
+{#    display: flex;#}
+{#    flex-direction: column;#}
+{#}#}
+{##}
+{#.product-card:hover {#}
+{#    box-shadow: 0 8px 16px rgba(0,0,0,.1);#}
+{#    transform: translateY(-2px);#}
+{#}#}
+{##}
+{#.img-container {#}
+{#    position: relative;#}
+{#    padding-top: 80%;#}
+{#    display: flex;#}
+{#    align-items: center;#}
+{#    justify-content: center;#}
+{#    border-bottom: 1px solid #f0f0f0;#}
+{#    background: #fff;#}
+{#}#}
+{##}
+{#.img-container img {#}
+{#    position: absolute;#}
+{#    top: 50%;#}
+{#    left: 50%;#}
+{#    transform: translate(-50%,-50%);#}
+{#    max-width: 85%;#}
+{#    max-height: 85%;#}
+{#    object-fit: contain;#}
+{#}#}
+{##}
+{#.btn-favorite {#}
+{#    position: absolute;#}
+{#    top: 10px;#}
+{#    right: 10px;#}
+{#    background: #fff;#}
+{#    border: 1px solid #e0e0e0;#}
+{#    border-radius: 50%;#}
+{#    width: 32px;#}
+{#    height: 32px;#}
+{#    display: flex;#}
+{#    align-items: center;#}
+{#    justify-content: center;#}
+{#    color: #c2c2c2;#}
+{#    box-shadow: 0 2px 4px rgba(0,0,0,.05);#}
+{#    z-index: 2;#}
+{#    text-decoration: none;#}
+{#}#}
+{##}
+{#.btn-favorite.active {#}
+{#    color: #ff4343;#}
+{#    border-color: #ff4343;#}
+{#}#}
+{##}
+{#.seller-info {#}
+{#    background: #f8f9fa;#}
+{#    border-radius: 6px;#}
+{#    padding: 10px;#}
+{#    margin-top: 15px;#}
+{#    font-size: .85rem;#}
+{#}#}
+{##}
+{#.seller-info p {#}
+{#    margin-bottom: 4px;#}
+{#}#}
+{##}
+{#.map-btn {#}
+{#    font-size: .8rem;#}
+{#    padding: 4px 10px;#}
+{#    color: #fff;#}
+{#    background-color: #198754;#}
+{#    border: none;#}
+{#    border-radius: 4px;#}
+{#    text-decoration: none;#}
+{#    display: inline-block;#}
+{#    margin-top: 5px;#}
+{#}#}
+{##}
+{#.map-btn:hover {#}
+{#    background-color: #157347;#}
+{#    color: #fff;#}
+{#}#}
+{##}
+{#.price-tag {#}
+{#    font-size: 1.4rem;#}
+{#    font-weight: 600;#}
+{#    color: #212121;#}
+{#}#}
+{##}
+{#.badge-cheaper {#}
+{#    background-color: #e6f4ea;#}
+{#    color: #1e8e3e;#}
+{#    border: 1px solid #1e8e3e;#}
+{#}#}
+{##}
+{#.offer-box {#}
+{#    background: #fff3cd;#}
+{#    color: #856404;#}
+{#    border-radius: 5px;#}
+{#    padding: 7px 10px;#}
+{#    font-size: .8rem;#}
+{#    margin-top: 8px;#}
+{#}#}
+{##}
+{#.stock-box {#}
+{#    margin-top: 8px;#}
+{#    font-size: .85rem;#}
+{#    font-weight: 600;#}
+{#}#}
+{##}
+{#.available {#}
+{#    color: #198754;#}
+{#}#}
+{##}
+{#.out-stock {#}
+{#    color: #dc3545;#}
+{#}#}
+{#</style>#}
+{##}
+{##}
+{#<div class="compare-container">#}
+{##}
+{#    <div class="row">#}
+{##}
+{#        <!-- SELECTED PRODUCT -->#}
+{#        <div class="col-lg-4 mb-4">#}
+{##}
+{#            <div class="sticky-panel">#}
+{##}
+{#                <h5 class="text-muted mb-3">#}
+{#                    <i class="bi bi-box-seam me-2"></i>#}
+{#                    You Selected#}
+{#                </h5>#}
+{##}
+{#                <div class="text-center mb-3">#}
+{##}
+{#                    <img#}
+{#                        src="{% if selected_product.photo %}{{ selected_product.photo }}{% else %}https://via.placeholder.com/300{% endif %}"#}
+{#                        class="img-fluid rounded"#}
+{#                        style="max-height:250px;"#}
+{#                    >#}
+{##}
+{#                </div>#}
+{##}
+{#                <h4 class="fw-bold">#}
+{#                    {{ selected_product.name }}#}
+{#                </h4>#}
+{##}
+{#                <span class="badge bg-secondary mb-2">#}
+{#                    {{ selected_product.CATEGORIES.name }}#}
+{#                </span>#}
+{##}
+{#                <div class="price-tag mb-3">#}
+{#                    ₹{{ sel_price|floatformat:2 }} <span style="text-decoration: line-through">₹{{ selected_product.price }}</span>#}
+{#                </div>#}
+{##}
+{##}
+{##}
+{#                <p class="text-muted small">#}
+{#                    {{ selected_product.discription }}#}
+{#                </p>#}
+{##}
+{##}
+{#                <!-- SELECTED PRODUCT OFFER -->#}
+{##}
+{#                {% if selected_product.offer %}#}
+{##}
+{#                <div class="offer-box">#}
+{##}
+{#                    <i class="bi bi-tag-fill me-1"></i>#}
+{##}
+{#                    <strong>Offer Price:</strong>#}
+{#                    ₹{{ selected_product.offer.offers_price }}#}
+{##}
+{#                    <br>#}
+{##}
+{#                    <i class="bi bi-calendar-event me-1"></i>#}
+{##}
+{#                    Valid until:#}
+{#                    {{ selected_product.offer.expiry_date|date:"M d, Y" }}#}
+{##}
+{#                </div>#}
+{##}
+{#                {% else %}#}
+{##}
+{#                <div class="offer-box">#}
+{#                    <i class="bi bi-tag me-1"></i>#}
+{#                    No active offer#}
+{#                </div>#}
+{##}
+{#                {% endif %}#}
+{##}
+{##}
+{#                <!-- SELECTED PRODUCT STOCK -->#}
+{##}
+{#                <div class="stock-box">#}
+{##}
+{#                    {% if selected_product.stock_info and selected_product.stock_info.stock != '0' %}#}
+{##}
+{#                    <span class="available">#}
+{#                        <i class="bi bi-box-seam me-1"></i>#}
+{#                        In Stock:#}
+{#                        {{ selected_product.stock_info.stock }}#}
+{#                    </span>#}
+{##}
+{#                    {% else %}#}
+{##}
+{#                    <span class="out-stock">#}
+{#                        <i class="bi bi-x-circle me-1"></i>#}
+{#                        Out of Stock#}
+{#                    </span>#}
+{##}
+{#                    {% endif %}#}
+{##}
+{#                </div>#}
+{##}
+{##}
+{#                <!-- SELLER -->#}
+{##}
+{#                <div class="seller-info">#}
+{##}
+{#                    <h6 class="fw-bold border-bottom pb-2 mb-2">#}
+{#                        <i class="bi bi-shop"></i>#}
+{#                        Seller Details#}
+{#                    </h6>#}
+{##}
+{#                    <p>#}
+{#                        <strong>Name:</strong>#}
+{#                        {{ selected_product.SELLERS.name }}#}
+{#                    </p>#}
+{##}
+{#                    <p>#}
+{#                        <strong>Location:</strong>#}
+{#                        {{ selected_product.SELLERS.place }},#}
+{#                        {{ selected_product.SELLERS.district }}#}
+{#                    </p>#}
+{##}
+{#                    <p>#}
+{#                        <strong>License:</strong>#}
+{#                        {{ selected_product.SELLERS.license_no }}#}
+{#                    </p>#}
+{##}
+{#                    <a#}
+{#                        href="https://maps.google.com/?q={{ selected_product.SELLERS.latitude }},{{ selected_product.SELLERS.longtitude }}"#}
+{#                        target="_blank"#}
+{#                        class="map-btn"#}
+{#                    >#}
+{#                        <i class="bi bi-geo-alt-fill"></i>#}
+{#                        View on Map#}
+{#                    </a>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <!-- CHEAPER PRODUCTS -->#}
+{##}
+{#        <div class="col-lg-8">#}
+{##}
+{#            <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm">#}
+{##}
+{#                <h5 class="mb-0 text-success fw-bold">#}
+{##}
+{#                    <i class="bi bi-graph-down-arrow me-2"></i>#}
+{##}
+{#                    Lower Price Alternatives#}
+{##}
+{#                </h5>#}
+{##}
+{#                <span class="text-muted">#}
+{#                    {{ similar_products|length }} Matches Found#}
+{#                </span>#}
+{##}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="row row-cols-1 row-cols-md-2 g-3">#}
+{##}
+{#                {% for product in similar_products %}#}
+{##}
+{#                <div class="col">#}
+{##}
+{#                    <div class="product-card">#}
+{##}
+{#                        <!-- IMAGE -->#}
+{##}
+{#                        <div class="img-container">#}
+{##}
+{#                            <a#}
+{#                                href="#"#}
+{#                                class="btn-favorite {% if product.id in user_favorites %}active{% endif %}"#}
+{#                                data-id="{{ product.id }}"#}
+{#                            >#}
+{#                                <i class="bi bi-heart-fill"></i>#}
+{#                            </a>#}
+{##}
+{#                            <img#}
+{#                                src="{% if product.photo %}{{ product.photo }}{% else %}https://via.placeholder.com/200{% endif %}"#}
+{#                                alt="{{ product.name }}"#}
+{#                            >#}
+{##}
+{#                        </div>#}
+{##}
+{##}
+{#                        <div class="p-3 d-flex flex-column flex-grow-1">#}
+{##}
+{#                            <h6#}
+{#                                class="fw-bold mb-2"#}
+{#                                title="{{ product.name }}"#}
+{#                            >#}
+{#                                {{ product.name }}#}
+{#                            </h6>#}
+{##}
+{##}
+{#                            <!-- PRICE -->#}
+{##}
+{#                            <div class="mb-2">#}
+{#                                 {% if product.offer %}#}
+{#                                <span class="fs-5 fw-bold text-dark">#}
+{#                                    ₹{{ product.offer.offers_price }}#}
+{#                                </span>#}
+{#                                {% endif %}#}
+{##}
+{#                                <span class="fs-5 fw-bold text-dark" style="font-size: 10px;text-decoration: line-through">#}
+{#                                    ₹{{ product.price }}#}
+{#                                </span>#}
+{##}
+{#                                <span class="badge badge-cheaper ms-2">#}
+{#                                    Save ₹{{ product.savings|floatformat:0 }}#}
+{#                                </span>#}
+{##}
+{#                            </div>#}
+{##}
+{##}
+{#                            <!-- OFFER -->#}
+{##}
+{#                            {% if product.offer %}#}
+{##}
+{#                            <div class="offer-box">#}
+{##}
+{#                                <i class="bi bi-tag-fill me-1"></i>#}
+{##}
+{#                                Offer:#}
+{#                                ₹{{ product.offer.offers_price }}#}
+{##}
+{#                                <br>#}
+{##}
+{#                                <i class="bi bi-calendar-event me-1"></i>#}
+{##}
+{#                                Ends:#}
+{#                                {{ product.offer.expiry_date|date:"M d, Y" }}#}
+{##}
+{#                            </div>#}
+{##}
+{#                            {% else %}#}
+{##}
+{#                            <div class="text-muted small mt-1">#}
+{#                                <i class="bi bi-tag me-1"></i>#}
+{#                                No active offer#}
+{#                            </div>#}
+{##}
+{#                            {% endif %}#}
+{##}
+{##}
+{#                            <!-- STOCK -->#}
+{##}
+{#                            <div class="stock-box">#}
+{##}
+{#                                {% if product.stock_info and product.stock_info.stock != '0' %}#}
+{##}
+{#                                <span class="available">#}
+{##}
+{#                                    <i class="bi bi-box-seam me-1"></i>#}
+{##}
+{#                                    In Stock:#}
+{#                                    {{ product.stock_info.stock }}#}
+{##}
+{#                                </span>#}
+{##}
+{#                                {% else %}#}
+{##}
+{#                                <span class="out-stock">#}
+{##}
+{#                                    <i class="bi bi-x-circle me-1"></i>#}
+{##}
+{#                                    Out of Stock#}
+{##}
+{#                                </span>#}
+{##}
+{#                                {% endif %}#}
+{##}
+{#                            </div>#}
+{##}
+{##}
+{#                            <!-- SELLER -->#}
+{##}
+{#                            <div class="seller-info mt-3">#}
+{##}
+{#                                <p class="text-truncate fw-bold mb-1">#}
+{##}
+{#                                    <i class="bi bi-shop"></i>#}
+{##}
+{#                                    {{ product.SELLERS.name }}#}
+{##}
+{#                                </p>#}
+{##}
+{#                                <p class="text-muted mb-1">#}
+{##}
+{#                                    <i class="bi bi-pin-map-fill"></i>#}
+{##}
+{#                                    {{ product.SELLERS.district }},#}
+{#                                    {{ product.SELLERS.state }}#}
+{##}
+{#                                </p>#}
+{##}
+{#                                <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">#}
+{##}
+{#                                    <a#}
+{#                                        href="tel:{{ product.SELLERS.phone }}"#}
+{#                                        class="text-decoration-none text-primary small"#}
+{#                                    >#}
+{#                                        <i class="bi bi-telephone-fill"></i>#}
+{#                                        Call Seller#}
+{#                                    </a>#}
+{##}
+{#                                    <a#}
+{#                                        href="https://maps.google.com/?q={{ product.SELLERS.latitude }},{{ product.SELLERS.longtitude }}"#}
+{#                                        target="_blank"#}
+{#                                        class="text-decoration-none text-success small"#}
+{#                                    >#}
+{#                                        <i class="bi bi-geo-alt-fill"></i>#}
+{#                                        Track#}
+{#                                    </a>#}
+{##}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{#                {% empty %}#}
+{##}
+{#                <div class="col-12 text-center py-5 bg-white rounded shadow-sm">#}
+{##}
+{#                    <i class="bi bi-emoji-frown fs-1 text-muted d-block mb-3"></i>#}
+{##}
+{#                    <h5 class="text-muted">#}
+{#                        No cheaper alternatives found in this category.#}
+{#                    </h5>#}
+{##}
+{#                    <p class="text-muted">#}
+{#                        You are already viewing the lowest price available.#}
+{#                    </p>#}
+{##}
+{#                </div>#}
+{##}
+{#                {% endfor %}#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#<script>#}
+{##}
+{#document.querySelectorAll('.btn-favorite').forEach(btn => {#}
+{##}
+{#    btn.addEventListener('click', function(e) {#}
+{##}
+{#        e.preventDefault();#}
+{##}
+{#        let productId = this.getAttribute('data-id');#}
+{#        let heartBtn = this;#}
+{##}
+{#        fetch(`/myapp/toggle_favorite/${productId}/`, {#}
+{##}
+{#            method: 'POST',#}
+{##}
+{#            headers: {#}
+{#                'X-CSRFToken': '{{ csrf_token }}',#}
+{#                'Content-Type': 'application/json'#}
+{#            }#}
+{##}
+{#        })#}
+{##}
+{#        .then(response => {#}
+{##}
+{#            if (!response.ok) {#}
+{#                throw new Error('Network response was not ok');#}
+{#            }#}
+{##}
+{#            return response.json();#}
+{##}
+{#        })#}
+{##}
+{#        .then(data => {#}
+{##}
+{#            if (data.status === 'success') {#}
+{##}
+{#                heartBtn.classList.toggle('active');#}
+{##}
+{#            }#}
+{##}
+{#        })#}
+{##}
+{#        .catch(error => {#}
+{##}
+{#            alert('Error toggling favorite. Please log in.');#}
+{##}
+{#        });#}
+{##}
+{#    });#}
+{##}
+{#});#}
+{##}
+{#</script>#}
+{##}
+{#    </body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{#{% extends 'users/index.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#  <title>Compare Products</title>#}
+{##}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">#}
+{##}
+{#  <style>#}
+{#    body {#}
+{#      background-color: #f1f3f6;#}
+{#      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;#}
+{#    }#}
+{#    #}
+{#    .compare-container {#}
+{#      max-width: 1400px;#}
+{#      margin: 0 auto;#}
+{#      padding: 20px;#}
+{#    }#}
+{##}
+{#    /* Selected Product Sticky Panel */#}
+{#    .sticky-panel {#}
+{#      position: sticky;#}
+{#      top: 20px;#}
+{#      background: #fff;#}
+{#      border-radius: 8px;#}
+{#      padding: 20px;#}
+{#      box-shadow: 0 4px 12px rgba(0,0,0,0.08);#}
+{#      border-top: 4px solid #2874f0; /* Brand Blue */#}
+{#    }#}
+{##}
+{#    /* Standard Product Card */#}
+{#    .product-card {#}
+{#      background: #fff;#}
+{#      border-radius: 4px;#}
+{#      border: 1px solid #e0e0e0;#}
+{#      transition: box-shadow 0.2s, transform 0.2s;#}
+{#      height: 100%;#}
+{#      position: relative;#}
+{#      display: flex;#}
+{#      flex-direction: column;#}
+{#    }#}
+{##}
+{#    .product-card:hover {#}
+{#      box-shadow: 0 8px 16px rgba(0,0,0,0.1);#}
+{#      transform: translateY(-2px);#}
+{#    }#}
+{##}
+{#    .img-container {#}
+{#      position: relative;#}
+{#      padding-top: 80%; #}
+{#      display: flex;#}
+{#      align-items: center;#}
+{#      justify-content: center;#}
+{#      border-bottom: 1px solid #f0f0f0;#}
+{#      background: #fff;#}
+{#    }#}
+{##}
+{#    .img-container img {#}
+{#      position: absolute;#}
+{#      top: 50%;#}
+{#      left: 50%;#}
+{#      transform: translate(-50%, -50%);#}
+{#      max-width: 85%;#}
+{#      max-height: 85%;#}
+{#      object-fit: contain;#}
+{#    }#}
+{##}
+{#    /* Favorite Button (Reused) */#}
+{#    .btn-favorite {#}
+{#      position: absolute;#}
+{#      top: 10px;#}
+{#      right: 10px;#}
+{#      background: #fff;#}
+{#      border: 1px solid #e0e0e0;#}
+{#      border-radius: 50%;#}
+{#      width: 32px;#}
+{#      height: 32px;#}
+{#      display: flex;#}
+{#      align-items: center;#}
+{#      justify-content: center;#}
+{#      color: #c2c2c2;#}
+{#      box-shadow: 0 2px 4px rgba(0,0,0,0.05);#}
+{#      z-index: 2;#}
+{#      text-decoration: none;#}
+{#    }#}
+{#    .btn-favorite.active { color: #ff4343; border-color: #ff4343; }#}
+{##}
+{#    /* Seller Info Box */#}
+{#    .seller-info {#}
+{#      background: #f8f9fa;#}
+{#      border-radius: 6px;#}
+{#      padding: 10px;#}
+{#      margin-top: 15px;#}
+{#      font-size: 0.85rem;#}
+{#    }#}
+{#    #}
+{#    .seller-info p { margin-bottom: 4px; }#}
+{#    #}
+{#    .map-btn {#}
+{#      font-size: 0.8rem;#}
+{#      padding: 4px 10px;#}
+{#      color: #fff;#}
+{#      background-color: #198754;#}
+{#      border: none;#}
+{#      border-radius: 4px;#}
+{#      text-decoration: none;#}
+{#      display: inline-block;#}
+{#      margin-top: 5px;#}
+{#    }#}
+{#    .map-btn:hover { background-color: #157347; color: white; }#}
+{##}
+{#    .price-tag { font-size: 1.4rem; font-weight: 600; color: #212121; }#}
+{#    .badge-cheaper { background-color: #e6f4ea; color: #1e8e3e; border: 1px solid #1e8e3e; }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#  <div class="compare-container">#}
+{#    <div class="row">#}
+{#      #}
+{#      <!-- LEFT SIDE: Selected Product -->#}
+{#      <div class="col-lg-4 mb-4">#}
+{#        <div class="sticky-panel">#}
+{#          <h5 class="text-muted mb-3"><i class="bi bi-box-seam me-2"></i>You Selected</h5>#}
+{#          #}
+{#          <div class="text-center mb-3">#}
+{#            <img src="{% if selected_product.photo %}{{ selected_product.photo }}{% else %}https://via.placeholder.com/300{% endif %}" #}
+{#                 class="img-fluid rounded" style="max-height: 250px;">#}
+{#          </div>#}
+{#          #}
+{#          <h4 class="fw-bold">{{ selected_product.name }}</h4>#}
+{#          <span class="badge bg-secondary mb-2">{{ selected_product.CATEGORIES.name }}</span>#}
+{#          #}
+{#          <div class="price-tag mb-3">₹{{ sel_price|floatformat:2 }}</div>#}
+{#          <p class="text-muted small">{{ selected_product.discription }}</p>#}
+{##}
+{#          <!-- Seller Details for Selected Product -->#}
+{#          <div class="seller-info">#}
+{#            <h6 class="fw-bold border-bottom pb-2 mb-2"><i class="bi bi-shop"></i> Seller Details</h6>#}
+{#            <p><strong>Name:</strong> {{ selected_product.SELLERS.name }}</p>#}
+{#            <p><strong>Location:</strong> {{ selected_product.SELLERS.place }}, {{ selected_product.SELLERS.district }}</p>#}
+{#            <p><strong>License:</strong> {{ selected_product.SELLERS.license_no }}</p>#}
+{#            #}
+{#            <a href="https://maps.google.com/?q={{ selected_product.SELLERS.latitude }},{{ selected_product.SELLERS.longtitude }}" #}
+{#               target="_blank" class="map-btn">#}
+{#               <i class="bi bi-geo-alt-fill"></i> View on Map#}
+{#            </a>#}
+{#          </div>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <!-- RIGHT SIDE: Cheaper Alternatives -->#}
+{#      <div class="col-lg-8">#}
+{#        <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm">#}
+{#          <h5 class="mb-0 text-success fw-bold">#}
+{#            <i class="bi bi-graph-down-arrow me-2"></i>Lower Price Alternatives#}
+{#          </h5>#}
+{#          <span class="text-muted">{{ similar_products|length }} Matches Found</span>#}
+{#        </div>#}
+{##}
+{#        <div class="row row-cols-1 row-cols-md-2 g-3">#}
+{#          {% for product in similar_products %}#}
+{#          <div class="col">#}
+{#            <div class="product-card">#}
+{#              #}
+{#              <div class="img-container">#}
+{#                <a href="#" class="btn-favorite {% if product.id in user_favorites %}active{% endif %}" data-id="{{ product.id }}">#}
+{#                  <i class="bi bi-heart-fill"></i>#}
+{#                </a>#}
+{#                <img src="{% if product.photo %}{{ product.photo }}{% else %}https://via.placeholder.com/200{% endif %}" alt="{{ product.name }}">#}
+{#              </div>#}
+{##}
+{#              <div class="p-3 d-flex flex-column flex-grow-1">#}
+{#                <div class="d-flex justify-content-between align-items-start mb-2">#}
+{#                  <h6 class="fw-bold mb-0 text-truncate" title="{{ product.name }}">{{ product.name }}</h6>#}
+{#                </div>#}
+{#                #}
+{#                <div class="mb-2">#}
+{#                  <span class="fs-5 fw-bold text-dark">₹{{ product.effective_price|floatformat:2 }}</span>#}
+{#<span class="badge badge-cheaper ms-2">Save ₹{{ product.savings|floatformat:0 }}</span>                </div>#}
+{##}
+{#                <!-- Seller Info inside Card -->#}
+{#                <div class="seller-info mt-auto">#}
+{#                  <p class="text-truncate fw-bold mb-1"><i class="bi bi-shop"></i> {{ product.SELLERS.name }}</p>#}
+{#                  <p class="text-muted mb-1"><i class="bi bi-pin-map-fill"></i> {{ product.SELLERS.district }}, {{ product.SELLERS.state }}</p>#}
+{#                  #}
+{#                  <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">#}
+{#                    <a href="tel:{{ product.SELLERS.phone }}" class="text-decoration-none text-primary small">#}
+{#                      <i class="bi bi-telephone-fill"></i> Call Seller#}
+{#                    </a>#}
+{#                    <a href="https://maps.google.com/?q={{ product.SELLERS.latitude }},{{ selected_product.SELLERS.longtitude }}" target="_blank" class="text-decoration-none text-success small">#}
+{#                      <i class="bi bi-geo-alt-fill"></i> Track#}
+{#                    </a>#}
+{#                  </div>#}
+{#                </div>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          {% empty %}#}
+{#          <div class="col-12 text-center py-5 bg-white rounded shadow-sm">#}
+{#            <i class="bi bi-emoji-frown fs-1 text-muted d-block mb-3"></i>#}
+{#            <h5 class="text-muted">No cheaper alternatives found in this category.</h5>#}
+{#            <p class="text-muted">You are already viewing the lowest price available.</p>#}
+{#          </div>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{#        #}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <!-- Reused JS for Favorite Toggle -->#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#  <script>#}
+{#    document.querySelectorAll('.btn-favorite').forEach(btn => {#}
+{#      btn.addEventListener('click', function(e) {#}
+{#        e.preventDefault();#}
+{#        let productId = this.getAttribute('data-id'); #}
+{#        let heartBtn = this;#}
+{##}
+{#        fetch(`/myapp/toggle_favorite/${productId}/`, {#}
+{#            method: 'POST',#}
+{#            headers: {#}
+{#                'X-CSRFToken': '{{ csrf_token }}',#}
+{#                'Content-Type': 'application/json'#}
+{#            },#}
+{#        })#}
+{#        .then(response => {#}
+{#            if (!response.ok) throw new Error('Network response was not ok');#}
+{#            return response.json();#}
+{#        })#}
+{#        .then(data => {#}
+{#            if(data.status === 'success') heartBtn.classList.toggle('active');#}
+{#        })#}
+{#        .catch(error => alert('Error toggling favorite. Please log in.'));#}
+{#      });#}
+{#    });#}
+{#  </script>#}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+
+{% extends 'users/index.html' %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compare Products</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    >
+
+
+    <style>
+
+        body {
+            background-color: #f1f3f6;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+
+        .compare-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+        /* =========================
+           SELECTED PRODUCT
+        ========================= */
+
+        .sticky-panel {
+            position: sticky;
+            top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid #2874f0;
+        }
+
+
+        /* =========================
+           PRODUCT CARD
+        ========================= */
+
+        .product-card {
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            transition: box-shadow .2s, transform .2s;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .product-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,.1);
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           IMAGE
+        ========================= */
+
+        .img-container {
+            position: relative;
+            padding-top: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #f0f0f0;
+            background: #fff;
+            overflow: hidden;
+        }
+
+
+        .img-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+        }
+
+
+        /* =========================
+           FAVORITE
+        ========================= */
+
+        .btn-favorite {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c2c2c2;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            z-index: 2;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+
+        .btn-favorite:hover {
+            color: #ff4343;
+            border-color: #ff4343;
+        }
+
+
+        .btn-favorite.active {
+            color: #ff4343;
+            border-color: #ff4343;
+        }
+
+
+        /* =========================
+           SELLER
+        ========================= */
+
+        .seller-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: .85rem;
+        }
+
+
+        .seller-info p {
+            margin-bottom: 4px;
+        }
+
+
+        /* =========================
+           MAP BUTTON
+        ========================= */
+
+        .map-btn {
+            font-size: .8rem;
+            padding: 4px 10px;
+            color: #fff;
+            background-color: #198754;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+
+        .map-btn:hover {
+            background-color: #157347;
+            color: #fff;
+        }
+
+
+        /* =========================
+           PRICE
+        ========================= */
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #212121;
+        }
+
+
+        .original-price {
+            font-size: .9rem;
+            color: #878787;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+
+        .badge-cheaper {
+            background-color: #e6f4ea;
+            color: #1e8e3e;
+            border: 1px solid #1e8e3e;
+        }
+
+
+        /* =========================
+           OFFER
+        ========================= */
+
+        .offer-box {
+            background: #fff3cd;
+            color: #856404;
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: .8rem;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           STOCK
+        ========================= */
+
+        .stock-box {
+            margin-top: 8px;
+            font-size: .85rem;
+            font-weight: 600;
+        }
+
+
+        .available {
+            color: #198754;
+        }
+
+
+        .out-stock {
+            color: #dc3545;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 991px) {
+
+            .sticky-panel {
+                position: relative;
+                top: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="compare-container">
+
+
+    <div class="row">
+
+
+        <!-- =====================================================
+             SELECTED PRODUCT
+        ====================================================== -->
+
+        <div class="col-lg-4 mb-4">
+
+
+            <div class="sticky-panel">
+
+
+                <h5 class="text-muted mb-3">
+
+                    <i class="bi bi-box-seam me-2"></i>
+
+                    You Selected
+
+                </h5>
+
+
+                <!-- PRODUCT IMAGE -->
+
+                <div class="text-center mb-3">
+
+                    <img
+                        src="{% if selected_product.photo %}
+                                {{ selected_product.photo }}
+                              {% else %}
+                                https://via.placeholder.com/300
+                              {% endif %}"
+                        class="img-fluid rounded"
+                        style="max-height:250px;"
+                        alt="{{ selected_product.name }}"
+                    >
+
+                </div>
+
+
+                <!-- PRODUCT NAME -->
+
+                <h4 class="fw-bold">
+
+                    {{ selected_product.name }}
+
+                </h4>
+
+
+                <!-- CATEGORY -->
+
+                <span class="badge bg-secondary mb-2">
+
+                    {{ selected_product.CATEGORIES.name }}
+
+                </span>
+
+
+                <!-- SELECTED PRODUCT PRICE -->
+
+                <div class="price-tag mb-3">
+
+                    {% if selected_product.offer %}
+
+                        ₹{{ selected_product.offer.offers_price }}
+
+                        <span class="original-price">
+
+                            ₹{{ selected_product.price }}
+
+                        </span>
+
+                    {% else %}
+
+                        ₹{{ selected_product.price }}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="text-muted small">
+
+                    {{ selected_product.discription }}
+
+                </p>
+
+
+                <!-- =================================================
+                     SELECTED PRODUCT OFFER
+                ================================================== -->
+
+                {% if selected_product.offer %}
+
+                    <div class="offer-box">
+
+                        <i class="bi bi-tag-fill me-1"></i>
+
+                        <strong>Offer Price:</strong>
+
+                        ₹{{ selected_product.offer.offers_price }}
+
+                        <br>
+
+                        <i class="bi bi-calendar-event me-1"></i>
+
+                        Valid until:
+
+                        {{ selected_product.offer.expiry_date|date:"M d, Y" }}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="offer-box">
+
+                        <i class="bi bi-tag me-1"></i>
+
+                        No active offer
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- =================================================
+                     SELECTED PRODUCT STOCK
+                ================================================== -->
+
+                <div class="stock-box">
+
+
+                    {% if selected_product.stock_info and selected_product.stock_info.stock != '0' %}
+
+                        <span class="available">
+
+                            <i class="bi bi-box-seam me-1"></i>
+
+                            In Stock:
+
+                            {{ selected_product.stock_info.stock }}
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="out-stock">
+
+                            <i class="bi bi-x-circle me-1"></i>
+
+                            Out of Stock
+
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- =================================================
+                     SELECTED PRODUCT SELLER
+                ================================================== -->
+
+                <div class="seller-info">
+
+
+                    <h6 class="fw-bold border-bottom pb-2 mb-2">
+
+                        <i class="bi bi-shop"></i>
+
+                        Seller Details
+
+                    </h6>
+
+
+                    <p>
+
+                        <strong>Name:</strong>
+
+                        {{ selected_product.SELLERS.name }}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>Location:</strong>
+
+                        {{ selected_product.SELLERS.place }},
+
+                        {{ selected_product.SELLERS.district }}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>License:</strong>
+
+                        {{ selected_product.SELLERS.license_no }}
+
+                    </p>
+
+
+                    {% if selected_product.SELLERS.latitude and selected_product.SELLERS.longtitude %}
+
+                        <a
+                            href="https://maps.google.com/?q={{ selected_product.SELLERS.latitude }},{{ selected_product.SELLERS.longtitude }}"
+                            target="_blank"
+                            class="map-btn"
+                        >
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            View on Map
+
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             CHEAPER PRODUCTS
+        ====================================================== -->
+
+        <div class="col-lg-8">
+
+
+            <!-- HEADER -->
+
+            <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm">
+
+
+                <h5 class="mb-0 text-success fw-bold">
+
+                    <i class="bi bi-graph-down-arrow me-2"></i>
+
+                    Lower Price Alternatives
+
+                </h5>
+
+
+                <span class="text-muted">
+
+                    {{ similar_products|length }} Matches Found
+
+                </span>
+
+
+            </div>
+
+
+            <!-- PRODUCT GRID -->
+
+            <div class="row row-cols-1 row-cols-md-2 g-3">
+
+
+                {% for product in similar_products %}
+
+
+                <div class="col">
+
+
+                    <div class="product-card">
+
+
+                        <!-- =================================================
+                             PRODUCT IMAGE
+                        ================================================== -->
+
+                        <div class="img-container">
+
+
+                            <a
+                                href="#"
+                                class="btn-favorite {% if product.id in user_favorites %}active{% endif %}"
+                                data-id="{{ product.id }}"
+                                title="Add to Wishlist"
+                            >
+
+                                <i class="bi bi-heart-fill"></i>
+
+                            </a>
+
+
+                            <img
+                                src="{% if product.photo %}
+                                        {{ product.photo }}
+                                      {% else %}
+                                        https://via.placeholder.com/200
+                                      {% endif %}"
+                                alt="{{ product.name }}"
+                            >
+
+
+                        </div>
+
+
+                        <!-- =================================================
+                             PRODUCT DETAILS
+                        ================================================== -->
+
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+
+
+                            <!-- PRODUCT NAME -->
+
+                            <h6
+                                class="fw-bold mb-2"
+                                title="{{ product.name }}"
+                            >
+
+                                {{ product.name }}
+
+                            </h6>
+
+
+                            <!-- CATEGORY -->
+
+                            <div class="text-muted small mb-2">
+
+                                {{ product.CATEGORIES.name }}
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 PRICE
+                            ================================================== -->
+
+                            <div class="mb-2">
+
+
+                                {% if product.offer %}
+
+                                    <span class="fs-5 fw-bold text-dark">
+
+                                        ₹{{ product.offer.offers_price }}
+
+                                    </span>
+
+
+                                    <span
+                                        class="text-muted ms-1"
+                                        style="text-decoration: line-through;"
+                                    >
+
+                                        ₹{{ product.price }}
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="fs-5 fw-bold text-dark">
+
+                                        ₹{{ product.price }}
+
+                                    </span>
+
+                                {% endif %}
+
+
+                                <!-- SAVINGS -->
+
+                                <span class="badge badge-cheaper ms-2">
+
+                                    Save ₹{{ product.savings|floatformat:0 }}
+
+                                </span>
+
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 OFFER
+                            ================================================== -->
+
+                            {% if product.offer %}
+
+
+                                <div class="offer-box">
+
+
+                                    <i class="bi bi-tag-fill me-1"></i>
+
+
+                                    <strong>Offer:</strong>
+
+                                    ₹{{ product.offer.offers_price }}
+
+
+                                    <br>
+
+
+                                    <i class="bi bi-calendar-event me-1"></i>
+
+
+                                    Ends:
+
+                                    {{ product.offer.expiry_date|date:"M d, Y" }}
+
+
+                                </div>
+
+
+                            {% else %}
+
+
+                                <div class="text-muted small mt-1">
+
+
+                                    <i class="bi bi-tag me-1"></i>
+
+                                    No active offer
+
+
+                                </div>
+
+
+                            {% endif %}
+
+
+                            <!-- =================================================
+                                 STOCK
+                            ================================================== -->
+
+                            <div class="stock-box">
+
+
+                                {% if product.stock_info and product.stock_info.stock != '0' %}
+
+
+                                    <span class="available">
+
+
+                                        <i class="bi bi-box-seam me-1"></i>
+
+
+                                        In Stock:
+
+                                        {{ product.stock_info.stock }}
+
+
+                                    </span>
+
+
+                                {% else %}
+
+
+                                    <span class="out-stock">
+
+
+                                        <i class="bi bi-x-circle me-1"></i>
+
+
+                                        Out of Stock
+
+
+                                    </span>
+
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 SELLER
+                            ================================================== -->
+
+                            <div class="seller-info mt-3">
+
+
+                                <p class="text-truncate fw-bold mb-1">
+
+
+                                    <i class="bi bi-shop"></i>
+
+
+                                    {{ product.SELLERS.name }}
+
+
+                                </p>
+
+
+                                <p class="text-muted mb-1">
+
+
+                                    <i class="bi bi-pin-map-fill"></i>
+
+
+                                    {{ product.SELLERS.district }},
+
+                                    {{ product.SELLERS.state }}
+
+
+                                </p>
+
+
+                                <p class="text-muted mb-1">
+
+
+                                    <i class="bi bi-geo-alt"></i>
+
+
+                                    {{ product.SELLERS.place }}
+
+
+                                </p>
+
+
+                                <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
+
+
+                                    <!-- CALL SELLER -->
+
+                                    <a
+                                        href="tel:{{ product.SELLERS.phone }}"
+                                        class="text-decoration-none text-primary small"
+                                    >
+
+                                        <i class="bi bi-telephone-fill"></i>
+
+                                        Call Seller
+
+                                    </a>
+
+
+                                    <!-- TRACK -->
+
+                                    {% if product.SELLERS.latitude and product.SELLERS.longtitude %}
+
+                                        <a
+                                            href="https://maps.google.com/?q={{ product.SELLERS.latitude }},{{ product.SELLERS.longtitude }}"
+                                            target="_blank"
+                                            class="text-decoration-none text-success small"
+                                        >
+
+                                            <i class="bi bi-geo-alt-fill"></i>
+
+                                            Track
+
+                                        </a>
+
+                                    {% endif %}
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                {% empty %}
+
+
+                <!-- NO CHEAPER PRODUCTS -->
+
+                <div class="col-12 text-center py-5 bg-white rounded shadow-sm">
+
+
+                    <i class="bi bi-emoji-frown fs-1 text-muted d-block mb-3"></i>
+
+
+                    <h5 class="text-muted">
+
+                        No cheaper alternatives found in this category.
+
+                    </h5>
+
+
+                    <p class="text-muted">
+
+                        You are already viewing the lowest price available.
+
+                    </p>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     FAVORITE AJAX
+========================================================= -->
+
+<script>
+
+document.querySelectorAll('.btn-favorite').forEach(btn => {
+
+    btn.addEventListener('click', function(e) {
+
+        e.preventDefault();
+
+
+        let productId = this.getAttribute('data-id');
+
+        let heartBtn = this;
+
+
+        fetch(`/myapp/toggle_favorite/${productId}/`, {
+
+            method: 'POST',
+
+            headers: {
+
+                'X-CSRFToken': '{{ csrf_token }}',
+
+                'Content-Type': 'application/json'
+
+            }
+
+        })
+
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error('Network response was not ok');
+
+            }
+
+            return response.json();
+
+        })
+
+
+        .then(data => {
+
+            if (data.status === 'success') {
+
+                heartBtn.classList.toggle('active');
+
+            }
+
+        })
+
+
+        .catch(error => {
+
+            alert('Error toggling favorite. Please log in.');
+
+        });
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>
+
+{% endblock %}

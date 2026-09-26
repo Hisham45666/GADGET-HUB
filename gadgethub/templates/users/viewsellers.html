@@ -1,0 +1,290 @@
+{% extends 'users/index.html' %}
+{% block body %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#<meta charset="UTF-8">#}
+{#<meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#<title>Nearby Sellers</title>#}
+{##}
+{#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">#}
+
+<style>
+        body{
+            background:#f1f3f6;
+            font-family:Segoe UI,Arial,sans-serif;
+        }
+        .container-main{
+            max-width:1400px;
+            margin:auto;
+            padding:25px;
+        }
+        .search-box{
+            background:white;
+            padding:12px 20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,.08);
+            display:flex;
+            align-items:center;
+            margin-bottom:25px;
+        }
+        .search-box input{
+            border:0;
+            outline:0;
+            width:100%;
+            padding:8px 12px;
+        }
+        .seller-card{
+            background:white;
+            border:1px solid #e5e5e5;
+            border-radius:12px;
+            overflow:hidden;
+            height:100%;
+            transition:.2s;
+        }
+        .seller-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 8px 20px rgba(0,0,0,.1);
+        }
+        .seller-logo{
+            height:190px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#fafafa;
+            border-bottom:1px solid #eee;
+        }
+        .seller-logo img{
+            max-width:75%;
+            max-height:75%;
+            object-fit:contain;
+        }
+        .seller-body{
+            padding:18px;
+        }
+        .seller-name{
+            font-size:19px;
+            font-weight:600;
+            margin-bottom:8px;
+        }
+        .seller-info{
+            color:#666;
+            font-size:14px;
+            margin-bottom:7px;
+        }
+        .distance{
+            display:inline-block;
+            background:#e8f5e9;
+            color:#198754;
+            padding:5px 10px;
+            border-radius:20px;
+            font-size:13px;
+            font-weight:600;
+            margin-bottom:12px;
+        }
+        .product-btn{
+            width:100%;
+            border-radius:7px;
+        }
+</style>
+{#</head>#}
+{##}
+{#<body>#}
+
+<div class="container-main">
+
+{#    <div class="search-box">#}
+{#        <i class="bi bi-search fs-5 text-muted"></i>#}
+{#        <input type="text" id="search" placeholder="Search sellers, places or districts...">#}
+{#    </div>#}
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0">Nearby Sellers</h4>
+        <span class="text-muted" id="count">{{ data|length }} Sellers</span>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="sellerGrid">
+
+        {% for i in data %}
+        <div class="col seller-col">
+
+            <div class="seller-card">
+
+                <div class="seller-logo">
+                    {% if i.logo %}
+                    <img src="{{ i.logo }}" alt="{{ i.name }}">
+                    {% else %}
+                    <i class="bi bi-shop fs-1 text-secondary"></i>
+                    {% endif %}
+                </div>
+
+                <div class="seller-body">
+
+                    <div class="seller-name">{{ i.name }}</div>
+
+                    <span class="distance">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        {{ i.distance }} KM
+                    </span>
+
+                    <div class="seller-info">
+                        <i class="bi bi-geo-alt me-1"></i>
+                        {{ i.place }}, {{ i.district }}
+                    </div>
+
+                    <div class="seller-info">
+                        <i class="bi bi-telephone me-1"></i>
+                        {{ i.phone }}
+                    </div>
+
+                    <div class="seller-info">
+                        <i class="bi bi-envelope me-1"></i>
+                        {{ i.email }}
+                    </div>
+
+                    <a href="/myapp/customers_product/{{ i.id }}#a"
+                       class="btn btn-success product-btn mt-3">
+                        <i class="bi bi-bag me-1"></i>
+                        View Products
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-shop-window fs-1 text-muted"></i>
+            <h5 class="text-muted mt-3">No sellers found within 5 KM</h5>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+    {% endblock %}
+{% block scripts %}
+<script>
+const search=document.getElementById("search");
+const sellers=document.querySelectorAll(".seller-col");
+const count=document.getElementById("count");
+
+search.addEventListener("input",function(){
+    let value=this.value.toLowerCase();
+    let visible=0;
+
+    sellers.forEach(seller=>{
+        let text=seller.innerText.toLowerCase();
+        seller.style.display=text.includes(value)?"":"none";
+        if(text.includes(value)) visible++;
+    });
+
+    count.innerText=visible+" Sellers";
+});
+
+window.onload=function(){
+    if(!navigator.geolocation)return;
+
+    navigator.geolocation.getCurrentPosition(function(position){
+
+        let lat=position.coords.latitude;
+        let lon=position.coords.longitude;
+
+        let params=new URLSearchParams(window.location.search);
+
+        if(!params.get("latitude")){
+            window.location.href=
+            window.location.pathname+
+            "?latitude="+lat+
+            "&longitude="+lon;
+        }
+
+    });
+};
+</script>
+{% endblock %}
+{#</body>#}
+{#</html>#}
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Data Table</title>#}
+{#  <!-- Bootstrap CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container mt-5">#}
+{#    <h2 class="mb-4">view sellers </h2>#}
+{#    <table id="registrationTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>#</th>#}
+{#          <th>Name</th>#}
+{#          <th>licience no</th>#}
+{#          <th>Email</th>#}
+{#          <th>Phone</th>#}
+{#          <th>Place</th>#}
+{#          <th>location</th>#}
+{#          <th>District</th>#}
+{#          <th>State</th>#}
+{#          <th>Pincode</th>#}
+{##}
+{#          <th>logo</th>#}
+{#            <th>Status</th>#}
+{#            <th>action</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#   {% for i in data  %}#}
+{##}
+{##}
+{##}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.name }}</td>#}
+{#          <td>{{ i.license_no }}</td>#}
+{#          <td>{{ i.email }}</td>#}
+{#          <td>{{ i.phone }}</td>#}
+{#          <td>{{ i.place }}</td>#}
+{#          <td>{{ i.latitude }},{{ i.longtitude }}</td>#}
+{#            <td>{{ i.district }}</td>#}
+{#            <td>{{ i.state }}</td>#}
+{#            <td>{{ i.pincode }}</td>#}
+{##}
+{#          <td><img src="{{ i.logo }}" width="100px" height="100px" /></td>#}
+{#          <td>{{ i.status }}</td>#}
+{#            <td>#}
+{#                <a href="/myapp/customers_product/{{ i.id }}" class="btn btn-success">Product</a>#}
+{#            </td>#}
+{#        </tr>#}
+{#   {% endfor %}#}
+{##}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable();#}
+{#    });#}
+{#  </script>#}
+{#{% for i in messages %}#}
+{#<p>#}
+{#    {{ i }}#}
+{#</p>#}
+{#{% endfor %}#}
+{#</body>#}
+{#</html>#}

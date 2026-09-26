@@ -1,0 +1,203 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Edit category Page</title>#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#   #}
+{#</head>#}
+{#<body>#}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#    <div class="container">#}
+{#        <div class="row justify-content-center">#}
+{#            <div class="col-md-6">#}
+{#                <h2 class="text-center">Edit category</h2>#}
+{#                <form action="/myapp/admin_edit_category_post/" method="post">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="form-group"><input type="hidden" name="id" value="{{ data.id }}">#}
+{#                        <label for="username">name</label>#}
+{#                        <input type="text" class="form-control" id="name" name="name" value="{{ data.name }}" placeholder="Enter your category name" required>#}
+{#                    </div>#}
+{##}
+{#                    <button type="submit" class="btn btn-primary btn-block">Edit</button>#}
+{#                </form>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
+{#    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #111827;
+        --paper: #F6F3EA;
+        --card: rgba(255, 255, 255, 0.88);
+        --gold: #D97706;
+        --gold-glow: rgba(217, 119, 6, 0.22);
+        --teal: #0D9488;
+        --teal-hover: #0F766E;
+        --line: rgba(203, 213, 225, 0.7);
+        --muted: #4B5563;
+    }
+
+    .edit-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--ink);
+        padding: 48px 0;
+        position: relative;
+    }
+
+    /* Vibrant ambient lighting background */
+    .edit-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 5%;
+        left: 20%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(13, 148, 136, 0.12) 0%, rgba(217, 119, 6, 0.08) 50%, transparent 75%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .edit-card {
+        background: var(--card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        border-radius: 24px;
+        padding: 44px;
+        box-shadow: 0 35px 70px -20px rgba(17, 24, 39, 0.2), inset 0 1px 2px rgba(255, 255, 255, 1);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    /* Glowing geometric golden accent ring in the corner */
+    .edit-card::after {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        border: 2px solid var(--gold-glow);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(217, 119, 6, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .edit-card h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 2rem;
+        color: var(--ink);
+        letter-spacing: -0.025em;
+        margin-bottom: 6px;
+        text-align: left !important;
+    }
+
+    .edit-subtext {
+        color: var(--muted);
+        font-size: 0.96rem;
+        font-weight: 450;
+        margin-bottom: 28px;
+    }
+
+    label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .form-control {
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        border-radius: 12px;
+        padding: 13px 16px;
+        height: auto;
+        font-size: 0.95rem;
+        background: rgba(246, 243, 234, 0.6);
+        backdrop-filter: blur(4px);
+        color: var(--ink);
+        transition: all 0.2s ease;
+    }
+
+    .form-control::placeholder {
+        color: #9ca3af;
+    }
+
+    .form-control:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--ink);
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #0D9488, #0F766E);
+        border: none;
+        color: #ffffff;
+        border-radius: 12px;
+        padding: 13px;
+        font-weight: 600;
+        font-size: 0.98rem;
+        box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35);
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background: linear-gradient(135deg, #0F766E, #115E59);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(13, 148, 136, 0.45);
+        color: #fff;
+    }
+</style>
+
+<!-- Load Fraunces Font for editorial headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="container edit-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="edit-card">
+                <h2>Edit Category</h2>
+                <p class="edit-subtext">Update the category details in your system.</p>
+
+                <form action="/myapp/admin_edit_category_post/" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="{{ data.id }}">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ data.name }}" placeholder="Enter your category name" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

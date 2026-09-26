@@ -1,0 +1,626 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Data Table</title>#}
+{#  <!-- Bootstrap CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{#  <div class="container mt-5">#}
+{##}
+{#   {% for i in messages %}#}
+{##}
+{#            <p>{{ i }}</p>#}
+{##}
+{#        {% endfor %}#}
+{#    <h2 class="mb-4">view product</h2>#}
+{#    <table id="complaintTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>#</th>#}
+{#          <th>Name</th>#}
+{#          <th>Discription</th>#}
+{#          <th>Category</th>#}
+{#          <th>Price</th>#}
+{#          <th>Photo</th>#}
+{#            <th>action</th>#}
+{#            <th>Stock</th>#}
+{#            <th>Offers</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#      {% for i in data %}#}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.name }}</td>#}
+{#          <td>{{ i.discription }}</td>#}
+{#          <td>{{ i.CATEGORIES.name }}</td>#}
+{#          <td>{{ i.price }}</td>#}
+{##}
+{#          <td><img src="{{ i.photo }}" width="100px" height="100px"></td>#}
+{#            <td>#}
+{#                <a href="/myapp/sellers_edit_product_get/{{ i.id }}#a" class="btn btn-success">Edit</a>#}
+{#                <a href="/myapp/sellers_delete_product/{{ i.id }}" class="btn btn-danger">Delete</a>#}
+{#{% comment %}#}
+{#                <a href="" class="btn btn-danger">Stock</a>#}
+{#{% endcomment %}#}
+{#            </td>#}
+{#        <td>#}
+{#                <a href="/myapp/sellers_add_stock_get/{{ i.id }}#a" class="btn btn-success">Add</a>#}
+{#                <a href="/myapp/seller_view_stock_get/{{ i.id }}#a" class="btn btn-danger">View</a>#}
+{#{% comment %}#}
+{#                <a href="" class="btn btn-danger">Stock</a>#}
+{#{% endcomment %}#}
+{#            </td>#}
+{#        <td>#}
+{#                <a href="/myapp/sellers_add_offer_get/{{ i.id }}#a" class="btn btn-success">Add</a>#}
+{#                <a href="/myapp/seller_view_offers_get/{{ i.id }}#a" class="btn btn-danger">View</a>#}
+{#{% comment %}#}
+{#                <a href="" class="btn btn-danger">Stock</a>#}
+{#{% endcomment %}#}
+{#            </td>#}
+{#        </tr>#}
+{#      {% endfor %}#}
+{##}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable();#}
+{#    });#}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{#    {% endblock %}#}
+{##}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{#<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">#}
+{#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">#}
+{##}
+{#<style>#}
+{#    .elite-wrapper {#}
+{#        font-family: 'Plus Jakarta Sans', sans-serif;#}
+{#        min-height: 85vh;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#        background: #fdfbf7;#}
+{#        background-image:#}
+{#            radial-gradient(at 0% 0%, rgba(200, 155, 60, 0.05) 0px, transparent 50%),#}
+{#            radial-gradient(at 100% 100%, rgba(47, 111, 98, 0.05) 0px, transparent 50%);#}
+{#        padding: 50px 0;#}
+{#    }#}
+{#    .elite-card {#}
+{#        background: #ffffff;#}
+{#        border: 1px solid rgba(200, 155, 60, 0.25);#}
+{#        border-radius: 16px;#}
+{#        box-shadow: 0 20px 40px rgba(27, 36, 48, 0.06), 0 2px 6px rgba(27, 36, 48, 0.04);#}
+{#        padding: 45px;#}
+{#        width: 100%;#}
+{#        position: relative;#}
+{#    }#}
+{#    .elite-card::before {#}
+{#        content: '';#}
+{#        position: absolute;#}
+{#        top: 0;#}
+{#        left: 24px;#}
+{#        right: 24px;#}
+{#        height: 3px;#}
+{#        background: linear-gradient(90deg, #c89b3c, #2f6f62);#}
+{#        border-radius: 0 0 3px 3px;#}
+{#    }#}
+{#    .elite-card h2 {#}
+{#        font-family: 'Playfair Display', serif;#}
+{#        font-weight: 700;#}
+{#        letter-spacing: -0.3px;#}
+{#        color: #1b2430;#}
+{#        margin-bottom: 30px;#}
+{#        font-size: 2rem;#}
+{#    }#}
+{#    .message-alert {#}
+{#        background: #fdfbf7;#}
+{#        border: 1px solid rgba(200, 155, 60, 0.3);#}
+{#        color: #2f6f62;#}
+{#        padding: 12px 18px;#}
+{#        border-radius: 8px;#}
+{#        margin-bottom: 25px;#}
+{#        font-weight: 500;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        gap: 10px;#}
+{#    }#}
+{#    .elite-table {#}
+{#        background: #ffffff !important;#}
+{#        color: #1b2430 !important;#}
+{#        border-collapse: collapse !important;#}
+{#        width: 100% !important;#}
+{#    }#}
+{#    .elite-table thead th {#}
+{#        background: #f8f6f0 !important;#}
+{#        color: #1b2430 !important;#}
+{#        font-weight: 600 !important;#}
+{#        border-bottom: 2px solid #e3decf !important;#}
+{#        border-top: 1px solid #e3decf !important;#}
+{#        padding: 16px 20px;#}
+{#        text-transform: uppercase;#}
+{#        font-size: 0.75rem;#}
+{#        letter-spacing: 1px;#}
+{#    }#}
+{#    .elite-table tbody tr {#}
+{#        background: #ffffff;#}
+{#        transition: background-color 0.15s ease;#}
+{#        border-bottom: 1px solid #f1ede4;#}
+{#    }#}
+{#    .elite-table tbody tr:hover {#}
+{#        background: #fdfbf7;#}
+{#    }#}
+{#    .elite-table td {#}
+{#        border: none !important;#}
+{#        padding: 18px 20px;#}
+{#        vertical-align: middle;#}
+{#        color: #334155 !important;#}
+{#        font-weight: 500;#}
+{#    }#}
+{#    .product-img {#}
+{#        width: 50px;#}
+{#        height: 50px;#}
+{#        object-fit: cover;#}
+{#        border-radius: 8px;#}
+{#        border: 1px solid #e3decf;#}
+{#    }#}
+{#    .btn-elite-edit {#}
+{#        background: #2f6f62;#}
+{#        border: none;#}
+{#        border-radius: 6px;#}
+{#        padding: 6px 12px;#}
+{#        font-weight: 600;#}
+{#        font-size: 0.8rem;#}
+{#        color: #fff;#}
+{#        transition: background 0.15s ease;#}
+{#        text-decoration: none;#}
+{#        display: inline-block;#}
+{#    }#}
+{#    .btn-elite-edit:hover { background: #24584e; color: #fff; }#}
+{##}
+{#    .btn-elite-delete {#}
+{#        background: #c89b3c;#}
+{#        border: none;#}
+{#        border-radius: 6px;#}
+{#        padding: 6px 12px;#}
+{#        font-weight: 600;#}
+{#        font-size: 0.8rem;#}
+{#        color: #fff;#}
+{#        transition: background 0.15s ease;#}
+{#        text-decoration: none;#}
+{#        display: inline-block;#}
+{#    }#}
+{#    .btn-elite-delete:hover { background: #b08530; color: #fff; }#}
+{##}
+{#    .btn-elite-sub {#}
+{#        background: #f8f6f0;#}
+{#        color: #2f6f62;#}
+{#        border: 1px solid #e3decf;#}
+{#        border-radius: 6px;#}
+{#        padding: 5px 10px;#}
+{#        font-weight: 600;#}
+{#        font-size: 0.78rem;#}
+{#        text-decoration: none;#}
+{#        display: inline-block;#}
+{#        margin-right: 3px;#}
+{#        transition: all 0.15s;#}
+{#    }#}
+{#    .btn-elite-sub:hover {#}
+{#        background: #2f6f62;#}
+{#        color: #fff;#}
+{#        border-color: #2f6f62;#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_length,#}
+{#    .dataTables_wrapper .dataTables_filter,#}
+{#    .dataTables_wrapper .dataTables_info,#}
+{#    .dataTables_wrapper .dataTables_paginate {#}
+{#        color: #6b7280 !important;#}
+{#        font-size: 0.88rem;#}
+{#        margin-top: 22px;#}
+{#    }#}
+{#    .dataTables_wrapper .dataTables_filter input {#}
+{#        background: #fdfbf7;#}
+{#        border: 1px solid #e3decf;#}
+{#        border-radius: 8px;#}
+{#        padding: 8px 14px;#}
+{#        color: #1b2430;#}
+{#        outline: none;#}
+{#    }#}
+{#    .dataTables_wrapper .dataTables_filter input:focus {#}
+{#        background: #ffffff;#}
+{#        border-color: #2f6f62;#}
+{#        box-shadow: 0 0 0 3px rgba(47, 111, 98, 0.1);#}
+{#    }#}
+{#    .page-item.active .page-link {#}
+{#        background-color: #2f6f62 !important;#}
+{#        border-color: #2f6f62 !important;#}
+{#        color: #fff !important;#}
+{#    }#}
+{#    .page-link {#}
+{#        color: #2f6f62 !important;#}
+{#        border-radius: 6px !important;#}
+{#        margin: 0 2px;#}
+{#        border: 1px solid #e3decf !important;#}
+{#        background: #ffffff !important;#}
+{#    }#}
+{#    .page-link:hover { background: #f8f6f0 !important; }#}
+{#</style>#}
+{##}
+{#<div class="elite-wrapper">#}
+{#  <div class="container-fluid px-4">#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-xl-12">#}
+{#        <div class="elite-card">#}
+{##}
+{#          {% for i in messages %}#}
+{#            <div class="message-alert">#}
+{#              <i class="fa-solid fa-circle-info"></i> {{ i }}#}
+{#            </div>#}
+{#          {% endfor %}#}
+{##}
+{#          <div class="text-center mb-4">#}
+{#            <h2>View Product</h2>#}
+{#          </div>#}
+{##}
+{#          <div class="table-responsive">#}
+{#            <table id="complaintTable" class="table elite-table">#}
+{#              <thead>#}
+{#                <tr>#}
+{#                  <th>#</th>#}
+{#                  <th>Name</th>#}
+{#                  <th>Description</th>#}
+{#                  <th>Category</th>#}
+{#                  <th>Price</th>#}
+{#                  <th>Photo</th>#}
+{#                  <th>Action</th>#}
+{#                  <th>Stock</th>#}
+{#                  <th>Offers</th>#}
+{#                </tr>#}
+{#              </thead>#}
+{#              <tbody>#}
+{#                {% for i in data %}#}
+{#                <tr>#}
+{#                  <td><span class="fw-bold text-muted">#{{ forloop.counter }}</span></td>#}
+{#                  <td><span class="text-dark fw-semibold">{{ i.name }}</span></td>#}
+{#                  <td><span class="text-muted small">{{ i.discription }}</span></td>#}
+{#                  <td><span class="badge bg-light text-dark border">{{ i.CATEGORIES.name }}</span></td>#}
+{#                  <td><span class="fw-bold text-success">{{ i.price }}</span></td>#}
+{#                  <td>#}
+{#                    <img src="{{ i.photo }}" class="product-img" alt="Product">#}
+{#                  </td>#}
+{#                  <td>#}
+{#                    <a href="/myapp/sellers_edit_product_get/{{ i.id }}#a" class="btn-elite-edit me-1">Edit</a>#}
+{#                    <a href="/myapp/sellers_delete_product/{{ i.id }}" class="btn-elite-delete" onclick="return confirm('Are you sure?');">Delete</a>#}
+{#                  </td>#}
+{#                  <td>#}
+{#                    <a href="/myapp/sellers_add_stock_get/{{ i.id }}#a" class="btn-elite-sub">Add</a>#}
+{#                    <a href="/myapp/seller_view_stock_get/{{ i.id }}#a" class="btn-elite-sub">View</a>#}
+{#                  </td>#}
+{#                  <td>#}
+{#                    <a href="/myapp/sellers_add_offer_get/{{ i.id }}#a" class="btn-elite-sub">Add</a>#}
+{#                    <a href="/myapp/seller_view_offers_get/{{ i.id }}#a" class="btn-elite-sub">View</a>#}
+{#                  </td>#}
+{#                </tr>#}
+{#                {% endfor %}#}
+{#              </tbody>#}
+{#            </table>#}
+{#          </div>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Scripts -->#}
+{#<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#<script>#}
+{#  $(document).ready(function () {#}
+{#    $('#complaintTable').DataTable({#}
+{#      "language": {#}
+{#        "search": "Search product:"#}
+{#      }#}
+{#    });#}
+{#  });#}
+{#</script>#}
+{#{% endblock %}#}
+
+{% extends 'seller/index.html' %}
+{% block body %}
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    .elite-wrapper {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7f4ed;
+        background-image:
+            radial-gradient(at 0% 0%, rgba(193, 143, 44, 0.08) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(31, 74, 91, 0.08) 0px, transparent 50%);
+        padding: 50px 0;
+    }
+    .elite-card {
+        background: #ffffff;
+        border: 1px solid rgba(193, 143, 44, 0.3);
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(27, 36, 48, 0.08), 0 2px 6px rgba(27, 36, 48, 0.04);
+        padding: 40px;
+        width: 100%;
+        max-width: 1400px; /* Increased card max-width to allow the table to expand significantly */
+        margin: 0 auto;
+        position: relative;
+    }
+    .elite-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 24px;
+        right: 24px;
+        height: 4px;
+        background: linear-gradient(90deg, #c18f2c, #1f4a5b);
+        border-radius: 0 0 4px 4px;
+    }
+    .elite-card h2 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #1b2430;
+        margin-bottom: 25px;
+        font-size: 2.3rem;
+    }
+    .message-alert {
+        background: #fdfbf7;
+        border: 1px solid rgba(193, 143, 44, 0.4);
+        color: #1f4a5b;
+        padding: 14px 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .elite-table {
+        background: #ffffff !important;
+        color: #1b2430 !important;
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+    .elite-table thead th {
+        background: #f1ecdf !important;
+        color: #1b2430 !important;
+        font-weight: 700 !important;
+        border-bottom: 3px solid #d4cebe !important;
+        border-top: 1px solid #d4cebe !important;
+        padding: 18px 20px; /* Increased table header padding for bigger appearance */
+        text-transform: uppercase;
+        font-size: 1rem; /* Larger header text */
+        letter-spacing: 1.2px;
+    }
+    .elite-table tbody tr {
+        background: #ffffff;
+        transition: background-color 0.15s ease;
+        border-bottom: 1px solid #ede8dc;
+    }
+    .elite-table tbody tr:hover {
+        background: #fbf9f5;
+    }
+    .elite-table td {
+        border: none !important;
+        padding: 22px 20px; /* Expanded padding for a much larger table layout */
+        vertical-align: middle;
+        color: #2c3e50 !important;
+        font-weight: 700;
+        font-size: 1.2rem; /* Enhanced text size */
+    }
+    .product-img {
+        width: 70px; /* Larger image size matching the bigger table */
+        height: 70px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1.5px solid #d4cebe;
+    }
+    .action-group {
+        display: flex;
+        flex-direction: row; /* Keeps edit and delete on a single line */
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+    .btn-elite-edit {
+        background: #1f4a5b;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+        transition: background 0.15s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-elite-edit:hover { background: #15323e; color: #fff; }
+
+    .btn-elite-delete {
+        background: #c18f2c;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+        transition: background 0.15s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-elite-delete:hover { background: #a67923; color: #fff; }
+
+    .btn-elite-sub {
+        background: #f7f4ed;
+        color: #1f4a5b;
+        border: 1px solid #d4cebe;
+        border-radius: 6px;
+        padding: 7px 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 4px;
+        transition: all 0.15s;
+    }
+    .btn-elite-sub:hover {
+        background: #1f4a5b;
+        color: #fff;
+        border-color: #1f4a5b;
+    }
+
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        color: #334155 !important;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-top: 25px;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        background: #fdfbf7;
+        border: 1.5px solid #d4cebe;
+        border-radius: 8px;
+        padding: 10px 16px;
+        color: #1b2430;
+        font-size: 1.1rem;
+        outline: none;
+    }
+    .dataTables_wrapper .dataTables_filter input:focus {
+        background: #ffffff;
+        border-color: #1f4a5b;
+        box-shadow: 0 0 0 3px rgba(31, 74, 91, 0.15);
+    }
+    .page-item.active .page-link {
+        background-color: #1f4a5b !important;
+        border-color: #1f4a5b !important;
+        color: #fff !important;
+        font-weight: 700;
+    }
+    .page-link {
+        color: #1f4a5b !important;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border-radius: 6px !important;
+        margin: 0 3px;
+        border: 1px solid #d4cebe !important;
+        background: #ffffff !important;
+    }
+    .page-link:hover { background: #f1ecdf !important; }
+</style>
+
+<div class="elite-wrapper">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center">
+      <div class="col-xl-12">
+        <div class="elite-card">
+
+          {% for i in messages %}
+            <div class="message-alert">
+              <i class="fa-solid fa-circle-info"></i> {{ i }}
+            </div>
+          {% endfor %}
+
+          <div class="text-center mb-4">
+            <h2>View Product</h2>
+          </div>
+
+          <div class="table-responsive">
+            <table id="complaintTable" class="table elite-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Photo</th>
+                  <th>Action</th>
+                  <th>Stock</th>
+                  <th>Offers</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in data %}
+                <tr>
+                  <td><span class="fw-bold text-secondary">#{{ forloop.counter }}</span></td>
+                  <td><span class="text-dark fw-bold">{{ i.name }}</span></td>
+                  <td><span class="text-muted fw-semibold">{{ i.discription }}</span></td>
+                  <td><span class="badge bg-light text-dark border px-2 py-1" style="font-size: 1rem;">{{ i.CATEGORIES.name }}</span></td>
+                  <td><span class="fw-bold text-success">{{ i.price }}</span></td>
+                  <td>
+                    <img src="{{ i.photo }}" class="product-img" alt="Product">
+                  </td>
+                  <td>
+                    <div class="action-group">
+                      <a href="/myapp/sellers_edit_product_get/{{ i.id }}#a" class="btn-elite-edit">Edit</a>
+                      <a href="/myapp/sellers_delete_product/{{ i.id }}" class="btn-elite-delete" onclick="return confirm('Are you sure?');">Delete</a>
+                    </div>
+                  </td>
+                  <td>
+                    <a href="/myapp/sellers_add_stock_get/{{ i.id }}#a" class="btn-elite-sub">Add</a>
+                    <a href="/myapp/seller_view_stock_get/{{ i.id }}#a" class="btn-elite-sub">View</a>
+                  </td>
+                  <td>
+                    <a href="/myapp/sellers_add_offer_get/{{ i.id }}#a" class="btn-elite-sub">Add</a>
+                    <a href="/myapp/seller_view_offers_get/{{ i.id }}#a" class="btn-elite-sub">View</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{#<!-- Scripts -->#}
+{#<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#<script>#}
+{#  $(document).ready(function () {#}
+{#    $('#complaintTable').DataTable({#}
+{#      "language": {#}
+{#        "search": "Search product:"#}
+{#      }#}
+{#    });#}
+{#  });#}
+{#</script>#}
+{% endblock %}

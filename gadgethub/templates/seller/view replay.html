@@ -1,0 +1,376 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Sent Complaints</title>#}
+{#  <!-- Bootstrap 5 CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{#  <div class="container mt-5">#}
+{#    <h3 class="mb-4">My Sent Complaints</h3>#}
+{##}
+{#    <!-- Date Filter Inputs -->#}
+{#    <div class="row mb-3">#}
+{#      <div class="col-md-4">#}
+{#        <label for="fromDate" class="form-label">From Date</label>#}
+{#        <input type="date" id="fromDate" class="form-control">#}
+{#      </div>#}
+{#      <div class="col-md-4">#}
+{#        <label for="toDate" class="form-label">To Date</label>#}
+{#        <input type="date" id="toDate" class="form-control">#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <!-- Complaints Table -->#}
+{#    <div class="table-responsive">#}
+{#      <table class="table table-bordered table-hover" id="complaintTable">#}
+{#        <thead class="table-light">#}
+{#          <tr>#}
+{#            <th>Sl. No.</th>#}
+{#            <th>Date</th>#}
+{#            <th>Complaint</th>#}
+{#            <th>Status</th>#}
+{#            <th>Replay</th>#}
+{##}
+{#          </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#          <!-- Samp#}
+{#          le Data Rows -->#}
+{#          {% for i in data %}#}
+{##}
+{##}
+{##}
+{#         <tr>#}
+{#            <td>{{ forloop.counter  }}</td>#}
+{#            <td>{{ i.date }}</td>#}
+{#            <td>{{ i.compliant }}</td>#}
+{#            <td>{{ i.status }}</td>#}
+{#            <td>{{ i.replay }}</td>#}
+{##}
+{#          </tr>#}
+{#               {% endfor %}#}
+{##}
+{#          <!-- Add more rows as needed -->#}
+{#        </tbody>#}
+{#      </table>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{##}
+{#  <script>#}
+{#    // Extend DataTables with custom date filtering#}
+{#    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {#}
+{#      const min = document.getElementById('fromDate').value;#}
+{#      const max = document.getElementById('toDate').value;#}
+{#      const dateStr = data[1]; // Date is column index 1#}
+{#      const date = new Date(dateStr);#}
+{##}
+{#      const minDate = min ? new Date(min) : null;#}
+{#      const maxDate = max ? new Date(max) : null;#}
+{##}
+{#      if ((!minDate || date >= minDate) && (!maxDate || date <= maxDate)) {#}
+{#        return true;#}
+{#      }#}
+{#      return false;#}
+{#    });#}
+{##}
+{#    // Initialize DataTable and bind filter events#}
+{#    $(document).ready(function () {#}
+{#      const table = $('#complaintTable').DataTable({#}
+{#        pageLength: 5#}
+{#      });#}
+{##}
+{#      $('#fromDate, #toDate').on('change', function () {#}
+{#        table.draw();#}
+{#      });#}
+{#    });#}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{#    {% endblock %}#}
+
+
+{% extends 'seller/index.html' %}
+{% block body %}
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    .modern-wrapper {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        background-image:
+            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.05) 0px, transparent 50%);
+        padding: 50px 0;
+    }
+    .modern-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        padding: 40px;
+        width: 100%;
+        max-width: 1100px; /* Reduced width to make the table smaller/compact */
+        margin: 0 auto;
+        position: relative;
+    }
+    .modern-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 30px;
+        right: 30px;
+        height: 4px;
+        background: linear-gradient(90deg, #6366f1, #0ea5e9);
+        border-radius: 0 0 4px 4px;
+    }
+    .modern-card h3 {
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #0f172a;
+        margin-bottom: 25px;
+        font-size: 2.2rem;
+    }
+    .filter-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 20px;
+        border-radius: 14px;
+        margin-bottom: 25px;
+    }
+    .filter-box .form-label {
+        font-weight: 700;
+        color: #475569;
+        font-size: 1rem; /* Increased text size */
+        margin-bottom: 8px;
+    }
+    .filter-box .form-control {
+        border: 1.5px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 1.05rem; /* Increased text size */
+        background: #ffffff;
+        color: #0f172a;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+    .filter-box .form-control:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
+    .modern-table {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+    .modern-table thead th {
+        background: #f1f5f9 !important;
+        color: #334155 !important;
+        font-weight: 700 !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        border-top: none !important;
+        padding: 14px 16px; /* Compact padding */
+        text-transform: uppercase;
+        font-size: 0.85rem; /* Increased table header text size */
+        letter-spacing: 1px;
+    }
+    .modern-table tbody tr {
+        background: #ffffff;
+        transition: background-color 0.15s ease;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .modern-table tbody tr:hover {
+        background: #f8fafc;
+    }
+    .modern-table td {
+        border: none !important;
+        padding: 16px; /* Compact padding */
+        vertical-align: middle;
+        color: #1e293b !important;
+        font-weight: 700; /* Bolder text */
+        font-size: 1.15rem; /* Increased row text size */
+    }
+    .status-badge {
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: 1rem; /* Increased badge text size */
+        font-weight: 700;
+        display: inline-block;
+        letter-spacing: 0.3px;
+    }
+    .status-pending {
+        background: #fffbeb;
+        color: #b45309;
+        border: 1px solid #fef3c7;
+    }
+    .status-resolved {
+        background: #ecfdf5;
+        color: #047857;
+        border: 1px solid #d1fae5;
+    }
+
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        color: #475569 !important;
+        font-size: 1.05rem; /* Increased info/pagination text size */
+        font-weight: 700;
+        margin-top: 20px;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        background: #ffffff;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 9px 14px;
+        color: #0f172a;
+        font-size: 1.05rem; /* Increased search box text size */
+        outline: none;
+        transition: all 0.2s;
+    }
+    .dataTables_wrapper .dataTables_filter input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+    }
+    .page-item.active .page-link {
+        background-color: #6366f1 !important;
+        border-color: #6366f1 !important;
+        color: #fff !important;
+        font-weight: 700;
+    }
+    .page-link {
+        color: #334155 !important;
+        font-weight: 700;
+        font-size: 1.05rem; /* Increased pagination button size */
+        border-radius: 8px !important;
+        margin: 0 3px;
+        border: 1px solid #e2e8f0 !important;
+        background: #ffffff !important;
+        padding: 8px 14px;
+    }
+    .page-link:hover {
+        background: #f1f5f9 !important;
+        color: #6366f1 !important;
+    }
+</style>
+
+<div class="modern-wrapper">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center">
+      <div class="col-xl-12">
+        <div class="modern-card">
+
+          <h3 class="mb-4 text-center">My Sent Complaints</h3>
+{% if messages %}
+                    <div class="messages-container">
+                        {% for i in messages %}
+                        <div class="alert alert-info py-2 mb-2 rounded-3 text-center" role="alert">
+                            {{ i }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+          <!-- Date Filter Inputs -->
+          <div class="filter-box">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="fromDate" class="form-label"><i class="fa-regular fa-calendar me-1 text-indigo"></i> From Date</label>
+                <input type="date" id="fromDate" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label for="toDate" class="form-label"><i class="fa-regular fa-calendar me-1 text-indigo"></i> To Date</label>
+                <input type="date" id="toDate" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <!-- Complaints Table -->
+          <div class="table-responsive">
+            <table class="table modern-table" id="complaintTable">
+              <thead>
+                <tr>
+                  <th>Sl. No.</th>
+                  <th>Date</th>
+                  <th>Complaint</th>
+                  <th>Status</th>
+                  <th>Replay</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in data %}
+                <tr>
+                  <td><span class="fw-bold text-muted">#{{ forloop.counter }}</span></td>
+                  <td><span class="text-dark fw-bold">{{ i.date }}</span></td>
+                  <td><span class="text-secondary fw-semibold">{{ i.compliant }}</span></td>
+                  <td>
+                    <span class="status-badge {% if i.status|lower == 'resolved' or i.status|lower == 'approved' or i.status|lower == 'completed' %}status-resolved{% else %}status-pending{% endif %}">
+                      {{ i.status }}
+                    </span>
+                  </td>
+                  <td><span class="text-dark fw-bold">{{ i.replay|default:"Awaiting response..." }}</span></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{#<!-- Scripts -->#}
+{#<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{##}
+{#<script>#}
+{#  // Extend DataTables with custom date filtering#}
+{#  $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {#}
+{#    const min = document.getElementById('fromDate').value;#}
+{#    const max = document.getElementById('toDate').value;#}
+{#    const dateStr = data[1]; // Date is column index 1#}
+{#    const date = new Date(dateStr);#}
+{##}
+{#    const minDate = min ? new Date(min) : null;#}
+{#    const maxDate = max ? new Date(max) : null;#}
+{##}
+{#    if ((!minDate || date >= minDate) && (!maxDate || date <= maxDate)) {#}
+{#      return true;#}
+{#    }#}
+{#    return false;#}
+{#  });#}
+{##}
+{#  // Initialize DataTable and bind filter events#}
+{#  $(document).ready(function () {#}
+{#    const table = $('#complaintTable').DataTable({#}
+{#      pageLength: 5,#}
+{#      "language": {#}
+{#        "search": "Search complaint:"#}
+{#      }#}
+{#    });#}
+{##}
+{#    $('#fromDate, #toDate').on('change', function () {#}
+{#      table.draw();#}
+{#    });#}
+{#  });#}
+{#</script>#}
+{% endblock %}

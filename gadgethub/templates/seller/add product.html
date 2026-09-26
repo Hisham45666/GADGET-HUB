@@ -1,0 +1,326 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Add product</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{# #}
+{#</head>#}
+{#<body>#}
+{#{% extends 'seller/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#  <div class="container">#}
+{#    <h2 class="mb-4">Add product</h2>#}
+{#    <form action="/myapp/seller_add_product_post/" method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 "> Name</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="full name" name="name" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="Replay" class="form-label">discrpition</label>#}
+{#        <textarea class="form-control" id="discrpition" rows="4" name="discrpition" placeholder="Write your discrpition here..." required></textarea>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">price</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="number"  class="form-control" id="price" name="price" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="photo" class="col-sm-4 ">photo</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="photo" accept="image/*" name="photo" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">Category</label>#}
+{#        <div class="col-sm-8">#}
+{#          <select class="form-control" name="category">#}
+{#          <option value="" selected disabled >select a category </option>#}
+{#              {% for i in data %}#}
+{#              <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#              {% endfor %}#}
+{#          </select>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{#          <button type="submit" class="btn btn-primary">Add</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#{% for i in messages  %}#}
+{#<p>{{ i }}</p>#}
+{#{% endfor %}#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+{% extends 'seller/index.html' %}
+{% block body %}
+
+<style>
+    .glass-wrapper {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #f8fafc 100%);
+        padding: 50px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glass-wrapper::before,
+    .glass-wrapper::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 0;
+        opacity: 0.45;
+    }
+    .glass-wrapper::before {
+        width: 320px;
+        height: 320px;
+        background: #c7d2fe;
+        top: -80px;
+        left: -60px;
+    }
+    .glass-wrapper::after {
+        width: 280px;
+        height: 280px;
+        background: #a5b4fc;
+        bottom: -60px;
+        right: -40px;
+    }
+
+    .glass-card {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 24px;
+        box-shadow:
+            0 25px 50px -12px rgba(0, 0, 0, 0.08),
+            0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        padding: 48px 44px;
+        transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 30px 60px -12px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+    }
+
+    .glass-card h2 {
+        font-weight: 700;
+        font-size: 1.75rem;
+        letter-spacing: -0.6px;
+        color: #0f172a;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .form-subtext {
+        color: #64748b;
+        font-size: 0.95rem;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .glass-card label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #334155;
+        margin-bottom: 0;
+    }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.55) !important;
+        border: 1.5px solid rgba(203, 213, 225, 0.9) !important;
+        border-radius: 14px !important;
+        padding: 12px 16px !important;
+        height: auto !important;
+        color: #0f172a !important;
+        font-size: 0.95rem;
+        transition: all 0.25s ease;
+    }
+
+    .glass-input:focus {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18) !important;
+        outline: none;
+    }
+
+    textarea.glass-input {
+        resize: vertical;
+        min-height: 110px;
+    }
+
+    /* Black Button */
+    .glass-btn {
+        background: #111111 !important;
+        border: none !important;
+        border-radius: 14px !important;
+        padding: 14px !important;
+        font-weight: 600 !important;
+        font-size: 1rem;
+        letter-spacing: 0.3px;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        transition: all 0.25s ease;
+    }
+
+    .glass-btn:hover {
+        transform: translateY(-3px);
+        background: #000000 !important;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-btn:active {
+        transform: translateY(-1px);
+    }
+
+    .messages-container {
+        margin-top: 24px;
+    }
+
+    @media (max-width: 576px) {
+        .glass-card {
+            padding: 32px 24px;
+        }
+        .glass-card h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="glass-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="glass-card">
+                    <h2>Add Product</h2>
+                    <p class="form-subtext">Fill in the details to add a new product.</p>
+
+                    <form action="/myapp/seller_add_product_post/" method="post" enctype="multipart/form-data" id="addProductForm" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Name -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="name" class="col-sm-4">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control glass-input" id="name" name="name" placeholder="Enter product name" required>
+                                <div class="invalid-feedback">Please enter the product name.</div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="row mb-3">
+                            <label for="description" class="col-sm-4 form-label pt-2">Description</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control glass-input" id="description" name="discrpition" rows="4" placeholder="Write product description here..." required></textarea>
+                                <div class="invalid-feedback">Please enter a product description.</div>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="price" class="col-sm-4">Price</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control glass-input" id="price" name="price" placeholder="Enter price" min="1" required>
+                                <div class="invalid-feedback">Please enter a valid price.</div>
+                            </div>
+                        </div>
+
+                        <!-- Photo -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="photo" class="col-sm-4">Photo</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control glass-input" id="photo" name="photo" accept="image/*" required>
+                                <div class="invalid-feedback">Please upload a product photo.</div>
+                            </div>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="row mb-4 align-items-center">
+                            <label for="category" class="col-sm-4">Category</label>
+                            <div class="col-sm-8">
+                                <select class="form-control glass-input" id="category" name="category" required>
+                                    <option value="" selected disabled>Select a category</option>
+                                    {% for i in data %}
+                                    <option value="{{ i.id }}">{{ i.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">Please select a category.</div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="row mb-3">
+                            <div class="offset-sm-4 col-sm-8">
+                                <button type="submit" class="btn btn-primary w-100 glass-btn">
+                                    Add Product
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                    <div class="messages-container">
+                        {% for i in messages %}
+                        <div class="alert alert-info py-2 mb-2 rounded-3 text-center" role="alert">
+                            {{ i }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var form = document.getElementById('addProductForm');
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        }, false);
+    })();
+</script>
+
+{% endblock %}

@@ -1,0 +1,596 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Form</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{# #}
+{#</head>#}
+{#<body>#}
+{#  <div class="container">#}
+{#    <h2 class="mb-4">Registration Form</h2>#}
+{#    <form action="/myapp/sellers_register_post/" method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Full Name</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="full name" name="name" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="dob" class="col-sm-4 ">Email address</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="email" class="form-control" id="email address" name="email" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">Phone Number</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone number" name="phone" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">Licience Number</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text"  class="form-control" id="licience number" name="licience number" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="place" class="col-sm-4 ">Place</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="place" name="place" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">District</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="district" name="district" required>#}
+{#        </div>#}
+{#      </div>#}
+{#        <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">State</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="state" name="state" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="pincode" class="col-sm-4 ">Pincode</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" pattern="[0-9]{6}" class="form-control" id="pincode" name="pincode" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="photo" class="col-sm-4 ">logo</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="logo" accept="image/*" name="logo" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">Latitude</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="latitude" name="latitude"required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">Longtitude</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="longtitude" name="longtitude" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="password" class="col-sm-4 ">Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" id="password" name="password" minlength="6" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="confirmPassword" class="col-sm-4 ">Confirm Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" id="confirmPassword" name="confirmpassword'" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{#          <button type="submit" class="btn btn-primary">Register</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#{% for i in messages %}#}
+{#<p>#}
+{#    {{ i }}#}
+{#</p>#}
+{#{% endfor %}#}
+{#</body>#}
+{##}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #1B2430;
+            --paper: #F6F3EA;
+            --card: #FFFFFF;
+            --gold: #C89B3C;
+            --teal: #2F6F62;
+            --line: #E3DECF;
+            --muted: #6B7280;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .container { max-width: 1050px; }
+
+        .auth-card {
+            background: var(--card);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -25px rgba(27, 36, 48, 0.35);
+            display: flex;
+        }
+
+        /* Left panel: storefront / tag motif (Matches Login Page) */
+        .auth-panel {
+            flex: 0 0 38%;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 44px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-panel::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 220px;
+            height: 220px;
+            border: 1px solid rgba(246, 243, 234, 0.14);
+            border-radius: 50%;
+        }
+
+        .auth-panel::after {
+            content: "";
+            position: absolute;
+            bottom: -90px;
+            right: 40px;
+            width: 160px;
+            height: 160px;
+            border: 1px solid rgba(246, 243, 234, 0.1);
+            border-radius: 50%;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fraunces', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .brand-mark svg { flex-shrink: 0; }
+
+        .panel-heading {
+            font-family: 'Fraunces', serif;
+            font-size: 1.9rem;
+            font-weight: 500;
+            line-height: 1.25;
+            margin-top: 32px;
+            z-index: 1;
+            max-width: 15ch;
+        }
+
+        .panel-sub {
+            font-size: 0.92rem;
+            color: rgba(246, 243, 234, 0.72);
+            margin-top: 14px;
+            z-index: 1;
+            max-width: 26ch;
+        }
+
+        .price-tag {
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(246, 243, 234, 0.08);
+            border: 1px solid rgba(246, 243, 234, 0.18);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            width: fit-content;
+        }
+
+        .benefits {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0 0 0;
+            z-index: 1;
+        }
+
+        .benefits li {
+            margin: 12px 0;
+            font-size: 0.88rem;
+            color: rgba(246, 243, 234, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefits li::before {
+            content: "✓";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--ink);
+            font-size: 0.75rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Right panel: the actual form */
+        .auth-form-wrap {
+            flex: 1;
+            padding: 48px 46px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-form-wrap h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .auth-subtext {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 11px 14px;
+            height: auto;
+            font-size: 0.92rem;
+            background: var(--paper);
+        }
+
+        .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(47, 111, 98, 0.15);
+            background: var(--card);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+
+        input[type="file"] {
+            padding: 8px 14px;
+            background: var(--paper);
+        }
+
+        input[type="file"]::file-selector-button {
+            border: none;
+            background: var(--line);
+            color: var(--ink);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+
+        .form-group { margin-bottom: 16px; }
+
+        .btn-primary {
+            background: var(--teal);
+            border-color: var(--teal);
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.15s ease;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #275a4f;
+            border-color: #275a4f;
+        }
+
+        .messages .alert {
+            background: #FBF3DC;
+            border: 1px solid #EBD9A0;
+            color: #7A5B15;
+            font-size: 0.85rem;
+            padding: 9px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 991px) {
+            .auth-card { flex-direction: column; }
+            .auth-panel { padding: 32px 28px; }
+            .panel-heading { margin-top: 22px; font-size: 1.5rem; }
+            .auth-form-wrap { padding: 36px 28px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="auth-card">
+
+                    <!-- Left Branding Panel -->
+                    <div class="auth-panel">
+                        <div class="brand-mark">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 8L7.5 3H16.5L18 8" stroke="#F6F3EA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 8H20L19 20H5L4 8Z" stroke="#F6F3EA" stroke-width="1.4" stroke-linejoin="round"/>
+                                <path d="M9 11V13" stroke="#C89B3C" stroke-width="1.4" stroke-linecap="round"/>
+                                <path d="M15 11V13" stroke="#C89B3C" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                            Marketplace
+                        </div>
+
+                        <div>
+                            <div class="price-tag">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 12L12 20L4 12V4H12L20 12Z" stroke="#C89B3C" stroke-width="2"/>
+                                    <circle cx="8" cy="8" r="1.2" fill="#C89B3C"/>
+                                </svg>
+                                Partner Program
+                            </div>
+                            <p class="panel-heading">Grow your business with our marketplace.</p>
+                            <p class="panel-sub">Reach thousands of active buyers and manage everything smoothly.</p>
+
+                            <ul class="benefits">
+                                <li>Easy seller registration</li>
+                                <li>Reach more customers</li>
+                                <li>Manage your products easily</li>
+                                <li>Secure and trusted platform</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Form Section -->
+                    <div class="auth-form-wrap">
+                        <h2>Create Seller Account</h2>
+                        <p class="auth-subtext">Enter your details to register as a seller.</p>
+
+                        <!-- Django Messages -->
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <form id="sellerForm" action="/myapp/sellers_register_post/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <!-- Full Name -->
+                               <div class="col-md-6 form-group">
+    <label for="name">Full Name</label>
+    <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Enter full name"
+        autocomplete="name"
+        pattern="[A-Za-z\s]+"
+        title="Full name should contain letters and spaces only"
+        required
+    >
+</div>
+
+
+                                <!-- Email -->
+                                <div class="col-md-6 form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" autocomplete="email" required>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-md-6 form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" required>
+                                </div>
+
+                                <!-- License Number -->
+                                <div class="col-md-6 form-group">
+                                    <label for="license_number">License Number</label>
+                                    <input type="text" class="form-control" id="license_number" name="licience number" placeholder="Enter license number" required>
+                                </div>
+
+                                <!-- Place -->
+                                <div class="col-md-6 form-group">
+                                    <label for="place">Place</label>
+                                    <input type="text" class="form-control" id="place" name="place" placeholder="Enter place" required>
+                                </div>
+
+                                <!-- District -->
+                                <div class="col-md-6 form-group">
+                                    <label for="district">District</label>
+                                    <input type="text" class="form-control" id="district" name="district" placeholder="Enter district" required>
+                                </div>
+
+                                <!-- State -->
+                                <div class="col-md-6 form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter state" required>
+                                </div>
+
+                                <!-- Pincode -->
+                                <div class="col-md-6 form-group">
+                                    <label for="pincode">Pincode</label>
+                                    <input type="text" class="form-control" id="pincode" name="pincode" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit pincode" required>
+                                </div>
+
+                                <!-- Logo -->
+                                <div class="col-12 form-group">
+                                    <label for="logo">Business Logo</label>
+                                    <input type="file" class="form-control" id="logo" name="logo" accept="image/png,image/jpeg,image/jpg,image/webp" required>
+                                </div>
+
+                                <!-- Latitude -->
+                                <div class="col-md-6 form-group">
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" class="form-control" id="latitude" name="latitude" step="any" min="-90" max="90" placeholder="Example: 10.8505" required>
+                                </div>
+
+                                <!-- Longitude -->
+                                <div class="col-md-6 form-group">
+                                    <label for="longitude">Longitude</label>
+                                    <input type="text" class="form-control" id="longtitude" name="longtitude" step="any" min="-180" max="180" placeholder="Example: 76.2711" required>
+                                </div>
+
+                                <!-- Password -->
+                               <div class="col-md-6 form-group">
+    <label for="password">Password</label>
+    <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        minlength="6"
+        placeholder="Min 6 characters"
+        autocomplete="new-password"
+        pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}"
+        title="Password must contain at least 6 characters, one uppercase letter, one lowercase letter, one digit, and one special character."
+        required
+    >
+</div>
+
+
+                                <!-- Confirm Password -->
+                                <div class="col-md-6 form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="6" placeholder="Repeat password" autocomplete="new-password" required>
+                                    <small id="passwordMessage" class="d-block mt-1"></small>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 mt-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Create Seller Account</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script validation matching the original form functionality -->
+    <script>
+        const form = document.getElementById("sellerForm");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirm_password");
+        const passwordMessage = document.getElementById("passwordMessage");
+
+        function checkPasswords() {
+            if (confirmPassword.value === "") {
+                passwordMessage.textContent = "";
+                confirmPassword.classList.remove("is-invalid");
+                return;
+            }
+
+            if (password.value !== confirmPassword.value) {
+                passwordMessage.textContent = "Passwords do not match";
+                passwordMessage.style.color = "#dc3545";
+                confirmPassword.classList.add("is-invalid");
+            } else {
+                passwordMessage.textContent = "Passwords match";
+                passwordMessage.style.color = "#2F6F62";
+                confirmPassword.classList.remove("is-invalid");
+            }
+        }
+
+        password.addEventListener("input", checkPasswords);
+        confirmPassword.addEventListener("input", checkPasswords);
+
+        form.addEventListener("submit", function(event) {
+            if (password.value !== confirmPassword.value) {
+                event.preventDefault();
+                passwordMessage.textContent = "Passwords do not match";
+                passwordMessage.style.color = "#dc3545";
+                confirmPassword.classList.add("is-invalid");
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Add category Page</title>#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#   #}
+{#</head>#}
+{#<body>#}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#    <div class="container">#}
+{#        <div class="row justify-content-center">#}
+{#            <div class="col-md-6">#}
+{#                <h2 class="text-center">Add category</h2>#}
+{#                <form method="post" action="/myapp/admin_add_category_post/">#}
+{##}
+{#                    {% csrf_token %}#}
+{#                    <div class="form-group">#}
+{#                        <label for="username">name</label>#}
+{#                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your category name" required>#}
+{#                    </div>#}
+{##}
+{#                    <button type="submit" class="btn btn-primary btn-block">Add</button>#}
+{#                </form>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        {% for i in messages %}#}
+{##}
+{#            <p>{{ i }}</p>#}
+{##}
+{#        {% endfor %}#}
+{##}
+{#    </div>#}
+{#    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>#}
+{#    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #1B2430;
+        --paper: #F6F3EA;
+        --card: rgba(255, 255, 255, 0.82);
+        --gold: #C89B3C;
+        --teal: #2F6F62;
+        --line: rgba(227, 222, 207, 0.7);
+        --muted: #6B7280;
+    }
+
+    .category-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--ink);
+        padding: 40px 0;
+    }
+
+    .category-card {
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 25px 50px -20px rgba(27, 36, 48, 0.25);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Subtle background circle decoration matching your theme */
+    .category-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        border: 1px solid rgba(200, 155, 60, 0.15);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .category-card h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 1.7rem;
+        color: var(--ink);
+        margin-bottom: 6px;
+        text-align: left !important;
+    }
+
+    .category-subtext {
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin-bottom: 24px;
+    }
+
+    label {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--ink);
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 11px 14px;
+        height: auto;
+        font-size: 0.92rem;
+        background: rgba(246, 243, 234, 0.6);
+        backdrop-filter: blur(4px);
+        color: var(--ink);
+        transition: all 0.2s ease;
+    }
+
+    .form-control::placeholder {
+        color: #9ca3af;
+    }
+
+    .form-control:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(47, 111, 98, 0.15);
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--ink);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background: var(--teal);
+        border-color: var(--teal);
+        border-radius: 8px;
+        padding: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 12px rgba(47, 111, 98, 0.25);
+        transition: all 0.15s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background: #275a4f;
+        border-color: #275a4f;
+        box-shadow: 0 6px 16px rgba(47, 111, 98, 0.35);
+    }
+
+    /* Styled alert matching your Django messages format */
+    .message-container {
+        margin-top: 20px;
+    }
+
+    .message-container p {
+        background: rgba(251, 243, 220, 0.85);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(235, 217, 160, 0.8);
+        color: #7A5B15;
+        font-size: 0.88rem;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+</style>
+
+<!-- Load Fraunces Font for consistent headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="container category-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="category-card">
+                <h2>Add Category</h2>
+                <p class="category-subtext">Create a new category for your platform.</p>
+
+                <form method="post" action="/myapp/admin_add_category_post/">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your category name" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Add</button>
+                </form>
+
+                {% if messages %}
+                <div class="message-container">
+                    {% for i in messages %}
+                        <p>{{ i }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

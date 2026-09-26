@@ -1,0 +1,222 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Send Complaint</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#  <div class="container mt-5">#}
+{#    <h4 class="mb-4">Send a Replay</h4>#}
+{#    <form action="/myapp/admin_sentreplay_post/" method="post">#}
+{#        {% csrf_token %}#}
+{##}
+{##}
+{##}
+{#        <input type="hidden" value="{{ id }}" name="id">#}
+{##}
+{#      <!-- Complaint Text -->#}
+{#      <div class="mb-3">#}
+{#        <label for="Replay" class="form-label">Replay</label>#}
+{#        <textarea class="form-control" id="Replay" rows="4" name="Replay" placeholder="Write your Replay here..." required></textarea>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <!-- Submit Button -->#}
+{#      <button type="submit" class="btn btn-primary">Send Replay</button>#}
+{#    </form>#}
+{#  </div>#}
+{##}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #111827;
+        --paper: #F6F3EA;
+        --card: rgba(255, 255, 255, 0.94);
+        --gold: #D97706;
+        --gold-glow: rgba(217, 119, 6, 0.22);
+        --teal: #0D9488;
+        --teal-hover: #0F766E;
+        --line: rgba(203, 213, 225, 0.7);
+        --muted: #4B5563;
+
+        /* Peerium Classic specific luxury palette variables */
+        --classic-bg: #1B1814;
+        --classic-panel: #FAF7F2;
+        --classic-border: #D1C7B7;
+        --classic-primary: #3B2E22;
+        --classic-gold: #C59B27;
+        --classic-gold-hover: #A78018;
+    }
+
+    .form-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--ink);
+        padding: 56px 0;
+        position: relative;
+    }
+
+    /* Ambient lighting modified for Peerium Classic warmth */
+    .form-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(197, 155, 39, 0.12) 0%, rgba(59, 46, 34, 0.08) 50%, transparent 75%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .form-card {
+        background: var(--classic-panel);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--classic-border);
+        border-radius: 12px;
+        padding: 44px;
+        box-shadow: 0 25px 50px -15px rgba(27, 24, 20, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    /* Peerium Classic Corner Monogram motif frame accent */
+    .form-card::after {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        border: 1px solid rgba(197, 155, 39, 0.3);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(197, 155, 39, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .form-header {
+        margin-bottom: 28px;
+        border-bottom: 2px solid var(--classic-border);
+        padding-bottom: 20px;
+    }
+
+    .form-card h4 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 1.9rem;
+        color: var(--classic-primary);
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        font-variant: small-caps;
+    }
+
+    .form-subtext {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 400;
+        font-style: italic;
+        margin-bottom: 0;
+    }
+
+    /* Form Elements Styling */
+    .form-label {
+        font-family: 'Fraunces', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--classic-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        border: 1px solid var(--classic-border);
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-size: 0.95rem;
+        background: #FFFFFF;
+        color: var(--ink);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--classic-gold);
+        box-shadow: 0 0 0 4px rgba(197, 155, 39, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+        background: #FFFFFF;
+        outline: none;
+    }
+
+    /* Classic Submit Button */
+    .btn-primary {
+        background: linear-gradient(135deg, var(--classic-gold), var(--classic-gold-hover));
+        border: none;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(197, 155, 39, 0.3);
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--classic-gold-hover), #8F6A10);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(197, 155, 39, 0.4);
+        color: #fff;
+    }
+</style>
+
+<!-- Load Fraunces Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="container form-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="form-card">
+
+                <div class="form-header">
+                    <h4>Send a Reply</h4>
+                    <p class="form-subtext">Submit your formal response or adjudication regarding the registered query/complaint.</p>
+                </div>
+
+                <form action="/myapp/admin_sentreplay_post/" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" value="{{ id }}" name="id">
+
+                    <!-- Complaint Text / Reply Field -->
+                    <div class="mb-4">
+                        <label for="Replay" class="form-label">Reply Content</label>
+                        <textarea class="form-control" id="Replay" rows="5" name="Replay" placeholder="Write your formal reply here..." required></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Send Reply</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,436 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>View stock</title>#}
+{#  <!-- Bootstrap CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{#  <div class="container mt-5">#}
+{#    <h2 class="mb-4">View stoc</h2>#}
+{#    <table id="complaintTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>#</th>#}
+{#          <th>Name</th>#}
+{##}
+{#            <th>Action</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#        <!-- Sample Data Row -->#}
+{#        {% for i in data %}#}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.stock }}</td>#}
+{##}
+{#            <td>#}
+{#                <a href="/myapp/sellers_edit_stock_get/{{ i.id }}" class="btn btn-success">Update</a>#}
+{#            </td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{##}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable();#}
+{#    });#}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+
+{##}
+{##}
+{#{% extends 'admins/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#<style>#}
+{#    :root {#}
+{#        --ink: #111827;#}
+{#        --paper: #F6F3EA;#}
+{#        --card: rgba(255, 255, 255, 0.94);#}
+{#        --gold: #D97706;#}
+{#        --gold-glow: rgba(217, 119, 6, 0.22);#}
+{#        --teal: #0D9488;#}
+{#        --teal-hover: #0F766E;#}
+{#        --line: rgba(203, 213, 225, 0.7);#}
+{#        --muted: #4B5563;#}
+{##}
+{#        /* Peerium Classic specific luxury palette variables */#}
+{#        --classic-bg: #1B1814;#}
+{#        --classic-panel: #FAF7F2;#}
+{#        --classic-border: #D1C7B7;#}
+{#        --classic-primary: #3B2E22;#}
+{#        --classic-gold: #C59B27;#}
+{#        --classic-gold-hover: #A78018;#}
+{#    }#}
+{##}
+{#    .table-wrapper {#}
+{#        font-family: 'Inter', -apple-system, sans-serif;#}
+{#        color: var(--ink);#}
+{#        padding: 48px 0;#}
+{#        position: relative;#}
+{#    }#}
+{##}
+{#    /* Ambient lighting modified for Peerium Classic warmth */#}
+{#    .table-wrapper::before {#}
+{#        content: "";#}
+{#        position: absolute;#}
+{#        top: 5%;#}
+{#        left: 2%;#}
+{#        width: 400px;#}
+{#        height: 400px;#}
+{#        background: radial-gradient(circle, rgba(197, 155, 39, 0.1) 0%, rgba(59, 46, 34, 0.08) 50%, transparent 75%);#}
+{#        pointer-events: none;#}
+{#        z-index: 0;#}
+{#    }#}
+{##}
+{#    .table-card {#}
+{#        background: var(--classic-panel);#}
+{#        backdrop-filter: blur(24px);#}
+{#        -webkit-backdrop-filter: blur(24px);#}
+{#        border: 1px solid var(--classic-border);#}
+{#        border-radius: 12px;#}
+{#        padding: 40px;#}
+{#        box-shadow: 0 25px 50px -15px rgba(27, 24, 20, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);#}
+{#        position: relative;#}
+{#        z-index: 1;#}
+{#        overflow: hidden;#}
+{#    }#}
+{##}
+{#    /* Peerium Classic Corner Monogram/Crest motif frame accent */#}
+{#    .table-card::after {#}
+{#        content: "";#}
+{#        position: absolute;#}
+{#        top: -50px;#}
+{#        right: -50px;#}
+{#        width: 150px;#}
+{#        height: 150px;#}
+{#        border: 1px solid rgba(197, 155, 39, 0.3);#}
+{#        border-radius: 50%;#}
+{#        background: radial-gradient(circle, rgba(197, 155, 39, 0.08) 0%, transparent 70%);#}
+{#        pointer-events: none;#}
+{#    }#}
+{##}
+{#    .table-header-flex {#}
+{#        margin-bottom: 28px;#}
+{#        border-bottom: 2px solid var(--classic-border);#}
+{#        padding-bottom: 20px;#}
+{#    }#}
+{##}
+{#    .table-card h2 {#}
+{#        font-family: 'Fraunces', serif;#}
+{#        font-weight: 600;#}
+{#        font-size: 2.1rem;#}
+{#        color: var(--classic-primary);#}
+{#        letter-spacing: -0.01em;#}
+{#        margin-bottom: 6px;#}
+{#        text-transform: uppercase;#}
+{#        font-variant: small-caps;#}
+{#    }#}
+{##}
+{#    .table-subtext {#}
+{#        color: var(--muted);#}
+{#        font-size: 0.95rem;#}
+{#        font-weight: 400;#}
+{#        font-style: italic;#}
+{#        margin-bottom: 0;#}
+{#    }#}
+{##}
+{#    /* Classic Structured Table Styling */#}
+{#    .table-responsive {#}
+{#        border-radius: 8px;#}
+{#        overflow-x: auto;#}
+{#        border: 1px solid var(--classic-border);#}
+{#        background: #FFFFFF;#}
+{#        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);#}
+{#    }#}
+{##}
+{#    .table {#}
+{#        margin-bottom: 0;#}
+{#        border-collapse: separate;#}
+{#        border-spacing: 0;#}
+{#        white-space: nowrap;#}
+{#    }#}
+{##}
+{#    .table thead th {#}
+{#        background: var(--classic-primary);#}
+{#        color: #FDFBF7;#}
+{#        font-family: 'Fraunces', serif;#}
+{#        font-weight: 500;#}
+{#        border-bottom: 3px solid var(--classic-gold);#}
+{#        padding: 16px 14px;#}
+{#        text-transform: uppercase;#}
+{#        font-size: 0.72rem;#}
+{#        letter-spacing: 0.12em;#}
+{#    }#}
+{##}
+{#    .table tbody td {#}
+{#        padding: 14px 14px;#}
+{#        vertical-align: middle;#}
+{#        font-size: 0.88rem;#}
+{#        color: var(--ink);#}
+{#        border-top: 1px solid #ECE7DE;#}
+{#        background: #FFFFFF;#}
+{#        transition: all 0.15s ease;#}
+{#    }#}
+{##}
+{#    .table tbody tr:first-child td {#}
+{#        border-top: none;#}
+{#    }#}
+{##}
+{#    .table tbody tr:hover td {#}
+{#        background: rgba(197, 155, 39, 0.04);#}
+{#    }#}
+{##}
+{#    /* Classic Gold Action Button */#}
+{#    .btn-gold-action {#}
+{#        background: linear-gradient(135deg, var(--classic-gold), var(--classic-gold-hover));#}
+{#        border: none;#}
+{#        color: #ffffff;#}
+{#        font-size: 0.75rem;#}
+{#        font-weight: 600;#}
+{#        padding: 6px 14px;#}
+{#        border-radius: 6px;#}
+{#        box-shadow: 0 2px 6px rgba(197, 155, 39, 0.25);#}
+{#        text-decoration: none;#}
+{#        display: inline-block;#}
+{#        transition: all 0.2s ease;#}
+{#        text-transform: uppercase;#}
+{#        letter-spacing: 0.05em;#}
+{#    }#}
+{#    .btn-gold-action:hover {#}
+{#        background: linear-gradient(135deg, var(--classic-gold-hover), #8F6A10);#}
+{#        color: #ffffff;#}
+{#        transform: translateY(-1px);#}
+{#        box-shadow: 0 4px 10px rgba(197, 155, 39, 0.35);#}
+{#        text-decoration: none;#}
+{#    }#}
+{##}
+{#    .row-index {#}
+{#        font-weight: 700;#}
+{#        color: var(--classic-primary);#}
+{#        font-size: 0.82rem;#}
+{#        background: #F3ECE1;#}
+{#        border: 1px solid var(--classic-border);#}
+{#        padding: 3px 7px;#}
+{#        border-radius: 4px;#}
+{#        font-family: monospace;#}
+{#    }#}
+{#</style>#}
+{##}
+{#<!-- Load Fraunces Font -->#}
+{#<link rel="preconnect" href="https://fonts.googleapis.com">#}
+{#<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">#}
+{##}
+{#<div class="container-fluid table-wrapper px-4">#}
+{#    <div class="row justify-content-center">#}
+{#        <div class="col-12">#}
+{#            <div class="table-card">#}
+{##}
+{#                <div class="table-header-flex">#}
+{#                    <h2>View Stock Inventory</h2>#}
+{#                    <p class="table-subtext">Monitor real-time inventory counts and modify stock quantities as required.</p>#}
+{#                </div>#}
+{##}
+{#                <div class="table-responsive">#}
+{#                    <table id="complaintTable" class="table">#}
+{#                        <thead>#}
+{#                            <tr>#}
+{#                                <th>#</th>#}
+{#                                <th>Name / Stock Detail</th>#}
+{#                            </tr>#}
+{#                        </thead>#}
+{#                        <tbody>#}
+{#                            {% for i in data %}#}
+{#                            <tr>#}
+{#                                <td><span class="row-index">#{{ forloop.counter }}</span></td>#}
+{#                                <td><strong style="color: var(--classic-primary); font-size: 0.95rem;">{{ i.stock }}</strong></td>#}
+{##}
+{#                            </tr>#}
+{#                            {% endfor %}#}
+{#                        </tbody>#}
+{#                    </table>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#<!-- Scripts -->#}
+{#<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#<script>#}
+{#    $(document).ready(function () {#}
+{#        $('#complaintTable').DataTable();#}
+{#    });#}
+{#</script>#}
+{##}
+{#{% endblock %}#}
+
+
+
+
+{% extends 'admins/index.html' %}
+{% block body %}
+
+<style>
+    :root {
+        --ink: #1B2430;
+        --paper: #F0F5FA;
+        --card: #FFFFFF;
+        --accent: #2563EB;
+        --accent-dark: #1E40AF;
+        --line: #D9E2EC;
+        --muted: #6B7280;
+    }
+
+    .table-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--ink);
+        padding: 40px 20px;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .table-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 28px;
+        box-shadow: 0 20px 50px -20px rgba(27, 36, 48, 0.18);
+    }
+
+    .table-card h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 1.7rem;
+        color: var(--ink);
+        margin-bottom: 6px;
+        text-transform: capitalize;
+    }
+
+    .table-subtext {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 22px;
+    }
+
+    .table-responsive {
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        overflow-x: auto;
+    }
+
+    .table {
+        margin-bottom: 0;
+        width: 100%;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .table thead th {
+        background: var(--accent-dark);
+        color: #FFFFFF;
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        border-bottom: 3px solid var(--accent);
+        padding: 12px 10px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        vertical-align: middle;
+    }
+
+    .table tbody td {
+        padding: 10px 10px;
+        vertical-align: middle;
+        font-size: 0.9rem;
+        color: var(--ink);
+        border-top: 1px solid var(--line);
+        background: var(--card);
+    }
+
+    .table tbody tr:hover td {
+        background: rgba(37, 99, 235, 0.05);
+    }
+
+    .row-index {
+        font-weight: 700;
+        color: var(--accent-dark);
+        font-size: 0.8rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+    }
+</style>
+
+<!-- Load Theme Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="table-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="table-card">
+
+                <h2>View Stock Inventory</h2>
+                <p class="table-subtext">Monitor real-time inventory counts and modify stock quantities as required.</p>
+
+                <div class="table-responsive">
+                    <table id="stockInventoryTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name / Stock Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td><span class="row-index">#{{ forloop.counter }}</span></td>
+                                <td><strong>{{ i.stock }}</strong></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#stockInventoryTable').DataTable({
+            pageLength: 5
+        });
+    });
+</script>
+
+{% endblock %}
